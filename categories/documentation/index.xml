@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>documentation - Category - Isaray&#39;s blog</title>
+        <link>https://Isaray.github.io/categories/documentation/</link>
+        <description>documentation - Category - Isaray&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 03 Mar 2020 16:29:41 &#43;0800</lastBuildDate><atom:link href="https://Isaray.github.io/categories/documentation/" rel="self" type="application/rss+xml" /><item>
+    <title>Theme Documentation - Extended Shortcodes</title>
+    <link>https://Isaray.github.io/theme-documentation-extended-shortcodes/</link>
+    <pubDate>Tue, 03 Mar 2020 16:29:41 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Isaray.github.io/theme-documentation-extended-shortcodes/</guid>
+    <description><![CDATA[<p><strong>LoveIt</strong> theme provides multiple shortcodes on top of built-in ones in Hugo.</p>]]></description>
+</item></channel>
+</rss>
