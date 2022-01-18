@@ -2,10 +2,12 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://Isaray.github.io/categories/</loc><lastmod>2022-01-18T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://Isaray.github.io/first_post/</loc><lastmod>2022-01-18T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://Isaray.github.io/tags/guess/</loc><lastmod>2022-01-18T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://Isaray.github.io/</loc><lastmod>2022-01-18T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://Isaray.github.io/posts/</loc><lastmod>2022-01-18T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://Isaray.github.io/categories/projects/</loc><lastmod>2022-01-18T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://Isaray.github.io/tags/</loc><lastmod>2022-01-18T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url></urlset>
+            <loc>https://Isaray.github.io/categories/</loc><lastmod>2022-01-18T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://Isaray.github.io/first_post/</loc><lastmod>2022-01-18T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://Isaray.github.io/tags/guess/</loc><lastmod>2022-01-18T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://Isaray.github.io/</loc><lastmod>2022-01-18T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://Isaray.github.io/posts/</loc><lastmod>2022-01-18T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://Isaray.github.io/categories/projects/</loc><lastmod>2022-01-18T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://Isaray.github.io/tags/</loc><lastmod>2022-01-18T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://Isaray.github.io/about/</loc><lastmod>2019-08-02T11:04:49&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://Isaray.github.io/search/</loc><changefreq>weekly</changefreq><priority>0.1</priority></url></urlset>
