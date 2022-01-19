@@ -9,10 +9,8 @@
     <pubDate>Mon, 17 Jan 2022 16:36:34 &#43;0800</pubDate>
     <author>Author</author>
     <guid>https://Isaray.github.io/build_websites_with_hugo/</guid>
-    <description><![CDATA[Build our own website by using Hugo on Wins Lighthouse (image)" Lighthouse (image)  Install Hugo There are so many tutorials for installing hugo on macOS and Linux, and this blog mainly fucuses on how to install hugo on Windows.
-And I recommend using method two.
-Method One： Using Official Docs Hugo official installation file：
-Install Hugo | Hugo (gohugo.io)
-First, make sure you have chocolatey on your laptop with Windows system.]]></description>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/build_websites_with_hugo/featured-image.jpg" referrerpolicy="no-referrer">
+            </div>Install Hugo on Wins and build your own website!]]></description>
 </item></channel>
 </rss>

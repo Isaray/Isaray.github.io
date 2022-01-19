@@ -1,10 +1,8 @@
 # How to build our own websites with Hugo on Windows?
 
+<!--more-->
+
 ## Build our own website by using Hugo on Wins
-
-
-
-{{< image src="featured-image.jpg" caption="Lighthouse (`image`)" src_s="featured-image.jpg" src_l="featured-image.jpg" >}}
 
 
 ## Install Hugo
@@ -38,7 +36,6 @@ Check whether hugo is installed successfully with the following command:
 ```bash
 choco help
 ```
-
 
 2.Install Hugo with Chocolatey
 
