@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>六种常见算法 - Isaray&#39;s blog</title><meta name="Description" content="递归、分治、贪心、回溯、动态规划和枚举"><meta property="og:title" content="六种常见算法" />
+<meta property="og:description" content="递归、分治、贪心、回溯、动态规划和枚举" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Isaray.github.io/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/" /><meta property="og:image" content="https://Isaray.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-17T16:36:34+08:00" />
+<meta property="article:modified_time" content="2022-01-18T17:55:28+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://Isaray.github.io/logo.png"/>
+
+<meta name="twitter:title" content="六种常见算法"/>
+<meta name="twitter:description" content="递归、分治、贪心、回溯、动态规划和枚举"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://Isaray.github.io/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/" /><link rel="next" href="https://Isaray.github.io/build_websites_with_hugo/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "六种常见算法",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/Isaray.github.io\/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0\/"
+        },"genre": "posts","keywords": "Python, Algorithm","wordcount":  122 ,
+        "url": "https:\/\/Isaray.github.io\/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0\/","datePublished": "2022-01-17T16:36:34+08:00","dateModified": "2022-01-18T17:55:28+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Isaray"
+            },"description": "递归、分治、贪心、回溯、动态规划和枚举"
+    }
+    </script><style>
+             
+.search {
+    position: relative;
+    padding-top: 3.5rem;
+    padding-bottom: 1rem;
+    width: 57.5%;
+    margin: 0 auto;
+    background: white;
+    opacity: .95;
+}
+[theme=dark] .search {
+    background: #3a3535;
+}
+
+[theme=dark] .search header,
+.search header {
+    background-color: #f8f8f8;
+}
+
+[theme=dark] .search header:hover,
+.search header:hover {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.search header h1 {
+    padding-left: 1rem;
+    background: white;
+}
+[theme=dark] .search header h1 {
+    background: #3a3535;
+}
+
+[theme=dark] .search input,
+.search input {
+	height: initial;
+    width: initial;
+    color: initial;
+	background-color: white;
+	margin: 0 0 0 1rem;
+	border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+	-webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.search #search-results {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+[theme=dark] a:active, [theme=dark] a:hover {
+    color: #2d96bd;
+}
+
+.search hr {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+        </style>
+    </head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Isaray&#39;s blog">Isaray&#39;s blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/categories/projects/"> Projects </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="/search/"><i class='fas fa-fw fa-search'></i> search </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Isaray&#39;s blog">Isaray&#39;s blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/categories/projects/" title="">Projects</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="/search/" title=""><i class='fas fa-fw fa-search'></i>search</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container">
+                    <div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">六种常见算法</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Isaray</a></span>&nbsp;<span class="post-category">included in <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>Notes</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-17">2022-01-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;122 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1递归">1.递归</a>
+      <ul>
+        <li><a href="#11算法策略">1.1算法策略</a></li>
+        <li><a href="#12-适用场景">1.2 适用场景</a>
+          <ul>
+            <li><a href="#解题策略">解题策略</a></li>
+          </ul>
+        </li>
+        <li><a href="#13经典问题">1.3经典问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#2分治">2.分治</a>
+      <ul>
+        <li><a href="#21算法策略">2.1算法策略</a></li>
+        <li><a href="#22适用场景">2.2适用场景</a>
+          <ul>
+            <li><a href="#解题策略-1">解题策略</a></li>
+          </ul>
+        </li>
+        <li><a href="#23经典问题">2.3经典问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#3贪心">3.贪心</a>
+      <ul>
+        <li><a href="#31算法策略">3.1算法策略</a></li>
+        <li><a href="#32适用场景">3.2适用场景</a>
+          <ul>
+            <li><a href="#解题策略-2">解题策略</a></li>
+          </ul>
+        </li>
+        <li><a href="#33经典问题">3.3经典问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#4回溯">4.回溯</a>
+      <ul>
+        <li><a href="#41算法策略">4.1算法策略</a></li>
+        <li><a href="#42适用场景">4.2适用场景</a></li>
+        <li><a href="#43经典问题">4.3经典问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#5动态规划">5.动态规划</a>
+      <ul>
+        <li><a href="#51算法策略">5.1算法策略</a></li>
+        <li><a href="#52适用场景">5.2适用场景</a>
+          <ul>
+            <li><a href="#解题策略-3">解题策略</a></li>
+          </ul>
+        </li>
+        <li><a href="#53经典问题">5.3经典问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#6枚举">6.枚举</a>
+      <ul>
+        <li><a href="#61算法策略">6.1算法策略</a></li>
+        <li><a href="#63经典问题">6.3经典问题</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="1递归">1.递归</h2>
+<h3 id="11算法策略">1.1算法策略</h3>
+<p>把问题分解成更小规模的同类子问题，用递归调用的方法求解问题。</p>
+<h3 id="12-适用场景">1.2 适用场景</h3>
+<p>引用知乎一篇文章的总结</p>
+<p>递归算法一般用于解决三类问题：</p>
+<ul>
+<li>数据的定义是按递归定义的。（斐波那契数列）</li>
+<li>问题解法按递归算法实现。（回溯）</li>
+<li>数据的结构形式是按递归定义的。（树的遍历，图的搜索）</li>
+</ul>
+<h4 id="解题策略">解题策略</h4>
+<p>（1）明确输入输出</p>
+<p>（2）明确递归结束条件</p>
+<p>（3）明确递归关系式</p>
+<h3 id="13经典问题">1.3经典问题</h3>
+<ul>
+<li>斐波那契数列</li>
+<li>汉诺塔问题</li>
+<li>树的遍历及相关操作</li>
+</ul>
+<h2 id="2分治">2.分治</h2>
+<h3 id="21算法策略">2.1算法策略</h3>
+<p>将一个问题分解成多个子问题，每个子问题又可以分解成更小的子问题，直到子问题可以被求解。原问题是子问题的合并。</p>
+<h3 id="22适用场景">2.2适用场景</h3>
+<p>当出现满足以下条件的问题，可以尝试只用分治策略进行求解：</p>
+<ul>
+<li>原始问题可以分成多个相似的子问题</li>
+<li>子问题可以很简单的求解</li>
+<li>原始问题的解是子问题解的合并</li>
+<li>各个子问题是相互独立的，不包含相同的子问题</li>
+</ul>
+<h4 id="解题策略-1">解题策略</h4>
+<ul>
+<li>分解大问题</li>
+<li>解决子问题</li>
+<li>合并子问题结果</li>
+</ul>
+<h3 id="23经典问题">2.3经典问题</h3>
+<ul>
+<li>二分查找</li>
+<li>归并排序</li>
+<li>快速排序</li>
+<li>汉诺塔问题</li>
+<li>React 时间分片</li>
+</ul>
+<h2 id="3贪心">3.贪心</h2>
+<h3 id="31算法策略">3.1算法策略</h3>
+<p>总是选择当下最优的解决方案。</p>
+<h3 id="32适用场景">3.2适用场景</h3>
+<p>当满足一下条件时，可以使用：</p>
+<ul>
+<li>原问题复杂度过高</li>
+<li>求全局最优解的数学模型难以建立或计算量过大</li>
+<li>没有太大必要一定要求出全局最优解，“比较优”就可以</li>
+</ul>
+<h4 id="解题策略-2">解题策略</h4>
+<ul>
+<li>定义最优解条件</li>
+<li>把问题分解成多个步骤，每一步要满足
+<ul>
+<li>可行性：每一步都满足问题的约束</li>
+<li>局部最优</li>
+<li>不可取消</li>
+</ul>
+</li>
+</ul>
+<p>最后叠加所有步骤得到最优解。</p>
+<h3 id="33经典问题">3.3经典问题</h3>
+<p>使用贪心算法求解的经典问题有：</p>
+<ul>
+<li>最小生成树算法</li>
+<li>单源最短路径的 Dijkstra 算法</li>
+<li>Huffman 压缩编码</li>
+<li>背包问题</li>
+<li>活动选择问题等</li>
+</ul>
+<h2 id="4回溯">4.回溯</h2>
+<h3 id="41算法策略">4.1算法策略</h3>
+<p>步步尝试，不行回退。</p>
+<h3 id="42适用场景">4.2适用场景</h3>
+<p>不断的尝试，直到拿到解。从一组可能的解中，选择一个满足要求的解。</p>
+<h3 id="43经典问题">4.3经典问题</h3>
+<ul>
+<li>深度优先搜索</li>
+<li>0-1背包问题</li>
+<li>正则表达式匹配</li>
+<li>八皇后</li>
+<li>数独</li>
+<li>全排列</li>
+</ul>
+<h2 id="5动态规划">5.动态规划</h2>
+<h3 id="51算法策略">5.1算法策略</h3>
+<p>Taking notes.</p>
+<p>将复杂问题分解成小问题求解，各个子问题之间有重合，结果可以复用。</p>
+<h3 id="52适用场景">5.2适用场景</h3>
+<p>求解最优解。</p>
+<h4 id="解题策略-3">解题策略</h4>
+<p>需要遵循以下几个重要步骤：</p>
+<ul>
+<li>定义子问题</li>
+<li>实现需要反复执行解决的子子问题部分</li>
+<li>识别并求解出边界条件</li>
+</ul>
+<h3 id="53经典问题">5.3经典问题</h3>
+<ul>
+<li>爬楼梯问题：假设你正在爬楼梯。需要 n 阶你才能到达楼顶。每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</li>
+<li>背包问题：给出一些资源（有总量及价值），给一个背包（有总容量），往背包里装资源，目标是在背包不超过总容量的情况下，装入更多的价值</li>
+<li>硬币找零：给出面额不定的一定数量的零钱，以及需要找零的钱数，找出有多少种找零方案</li>
+<li>图的全源最短路径：一个图中包含 u、v 顶点，找出从顶点 u 到顶点 v 的最短路径</li>
+<li>最长公共子序列：找出一组序列的最长公共子序列（可由另一序列删除元素但不改变剩下元素的顺序实现）</li>
+</ul>
+<h2 id="6枚举">6.枚举</h2>
+<h3 id="61算法策略">6.1算法策略</h3>
+<p>一一列举，明确列举范围。</p>
+<h3 id="63经典问题">6.3经典问题</h3>
+<p>参考：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/431240843" target="_blank" rel="noopener noreffer">95% 的算法都是基于这 6 种算法思想！！！ - 知乎 (zhihu.com)</a></p>
+<p><a href="https://blog.csdn.net/sinat_35512245/article/details/78796328" target="_blank" rel="noopener noreffer">BAT机器学习面试1000题系列_HuangQinJian-CSDN博客_bat机器学习1000题</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/75864673" target="_blank" rel="noopener noreffer">剑指offer-Python版（上） - 知乎 (zhihu.com)</a></p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-01-18</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://Isaray.github.io/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/" data-title="六种常见算法" data-hashtags="Python,Algorithm"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://Isaray.github.io/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/" data-hashtag="Python"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://Isaray.github.io/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/" data-title="六种常见算法" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://Isaray.github.io/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/" data-title="六种常见算法"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://Isaray.github.io/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/" data-title="六种常见算法"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://Isaray.github.io/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/" data-title="六种常见算法" data-description="递归、分治、贪心、回溯、动态规划和枚举"><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://Isaray.github.io/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/" data-title="六种常见算法" data-description="递归、分治、贪心、回溯、动态规划和枚举"><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://Isaray.github.io/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/" data-title="六种常见算法"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/algorithm/">Algorithm</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/build_websites_with_hugo/" class="next" rel="next" title="How to build our own websites with Hugo on Windows?">How to build our own websites with Hugo on Windows?<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Isaray</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

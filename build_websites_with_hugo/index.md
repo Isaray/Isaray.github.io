@@ -4,6 +4,9 @@
 
 ## Build our own website by using Hugo on Wins
 
+Hugo is said to be the world's fastest framework for building websites.
+
+[The world’s fastest framework for building websites | Hugo (gohugo.io)](https://gohugo.io/)
 
 ## Install Hugo
 
