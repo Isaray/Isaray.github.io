@@ -3,9 +3,16 @@
         <title>Isaray&#39;s blog</title>
         <link>https://Isaray.github.io/</link>
         <description>这是我的全新 Hugo 网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 17 Jan 2022 16:36:34 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 27 Jan 2022 16:36:34 &#43;0800</lastBuildDate>
             <atom:link href="https://Isaray.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Zotero的使用</title>
+    <link>https://Isaray.github.io/zotero/</link>
+    <pubDate>Thu, 27 Jan 2022 16:36:34 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Isaray.github.io/zotero/</guid>
+    <description><![CDATA[Zotero的安装和使用]]></description>
+</item><item>
     <title>How to build our own websites with Hugo on Windows?</title>
     <link>https://Isaray.github.io/build_websites_with_hugo/</link>
     <pubDate>Mon, 17 Jan 2022 16:36:34 &#43;0800</pubDate>

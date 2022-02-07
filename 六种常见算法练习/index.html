@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/Isaray.github.io\/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0\/"
-        },"genre": "posts","keywords": "Python, Algorithm","wordcount":  122 ,
+        },"genre": "posts","keywords": "Python, Algorithm","wordcount":  262 ,
         "url": "https:\/\/Isaray.github.io\/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0\/","datePublished": "2022-01-17T16:36:34+08:00","dateModified": "2022-01-18T17:55:28+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -145,8 +145,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">六种常见算法</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Isaray</a></span>&nbsp;<span class="post-category">included in <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>Notes</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-17">2022-01-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;122 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-17">2022-01-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;262 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -209,6 +209,9 @@
       <ul>
         <li><a href="#61算法策略">6.1算法策略</a></li>
         <li><a href="#63经典问题">6.3经典问题</a></li>
+        <li><a href="#1bfsdfs">1.bfs,dfs</a></li>
+        <li><a href="#2binary-search">2.binary search</a></li>
+        <li><a href="#3sliding-window">3.sliding window</a></li>
       </ul>
     </li>
   </ul>
@@ -332,7 +335,81 @@
 <p>参考：</p>
 <p><a href="https://zhuanlan.zhihu.com/p/431240843" target="_blank" rel="noopener noreffer">95% 的算法都是基于这 6 种算法思想！！！ - 知乎 (zhihu.com)</a></p>
 <p><a href="https://blog.csdn.net/sinat_35512245/article/details/78796328" target="_blank" rel="noopener noreffer">BAT机器学习面试1000题系列_HuangQinJian-CSDN博客_bat机器学习1000题</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/75864673" target="_blank" rel="noopener noreffer">剑指offer-Python版（上） - 知乎 (zhihu.com)</a></p></div><div class="post-footer" id="post-footer">
+<p><a href="https://zhuanlan.zhihu.com/p/75864673" target="_blank" rel="noopener noreffer">剑指offer-Python版（上） - 知乎 (zhihu.com)</a></p>
+<h3 id="1bfsdfs">1.bfs,dfs</h3>
+<p>dfs可以看作不知道层数情况下的枚举法，用到递归的思想。</p>
+<p>全排列</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">class Solution2:
+    def permute(self, nums: List[int]) -&gt; List[List[int]]:
+        res = []
+        def backtrack(nums, tmp):
+            if not nums:
+                res.append(tmp)
+                return 
+            for i in range(len(nums)):
+                backtrack(nums[:i] + nums[i+1:], tmp + [nums[i]])
+        backtrack(nums, [])
+        return res
+</code></pre></td></tr></table>
+</div>
+</div><p>岛屿数量等</p>
+<h3 id="2binary-search">2.binary search</h3>
+<h3 id="3sliding-window">3.sliding window</h3>
+<p>move them simutanously
+给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。</p>
+<p>示例 1:</p>
+<p>输入: s = &ldquo;abcabcbb&rdquo;
+输出: 3
+解释: 因为无重复字符的最长子串是 &ldquo;abc&rdquo;，所以其长度为 3。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">class Solution:
+    def lengthOfLongestSubstring(self, s: str) -&gt; int:
+        cur, res = [], 0
+        for r in range(len(s)):
+            while s[r] in cur: 
+                cur.pop(0) # 左边出
+            cur.append(s[r]) # 右侧无论如何都会进入新的
+            res = max(len(cur),res)
+        return res
+</code></pre></td></tr></table>
+</div>
+</div><p>recursion</p>
+<p>fibonacci, binary tree
+inverting into binary tree</p>
+<p>reverse a linked list</p>
+<p>suffix trees</p>
+<p>heaps</p>
+<p>repeatedly find min,max
+dynamic programming</p>
+<p>sorting algorithm</p>
+<p>quick sort and merge sort</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">

@@ -158,3 +158,69 @@ Taking notes.
 
 [剑指offer-Python版（上） - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/75864673)
 
+
+
+### 1.bfs,dfs
+
+dfs可以看作不知道层数情况下的枚举法，用到递归的思想。
+
+全排列
+
+```
+class Solution2:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        def backtrack(nums, tmp):
+            if not nums:
+                res.append(tmp)
+                return 
+            for i in range(len(nums)):
+                backtrack(nums[:i] + nums[i+1:], tmp + [nums[i]])
+        backtrack(nums, [])
+        return res
+```
+
+岛屿数量等
+
+### 2.binary search
+
+### 3.sliding window
+
+move them simutanously
+给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
+
+示例 1:
+
+输入: s = "abcabcbb"
+输出: 3
+解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
+
+```
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        cur, res = [], 0
+        for r in range(len(s)):
+            while s[r] in cur: 
+                cur.pop(0) # 左边出
+            cur.append(s[r]) # 右侧无论如何都会进入新的
+            res = max(len(cur),res)
+        return res
+```
+recursion
+
+fibonacci, binary tree
+inverting into binary tree
+
+reverse a linked list
+
+suffix trees
+
+heaps
+
+repeatedly find min,max
+dynamic programming
+
+sorting algorithm
+
+quick sort and merge sort
+
