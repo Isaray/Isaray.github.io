@@ -158,15 +158,13 @@ Taking notes.
 
 [剑指offer-Python版（上） - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/75864673)
 
-
-
 ### 1.bfs,dfs
 
 dfs可以看作不知道层数情况下的枚举法，用到递归的思想。
 
 全排列
 
-```
+```python
 class Solution2:
     def permute(self, nums: List[int]) -> List[List[int]]:
         res = []
@@ -180,9 +178,45 @@ class Solution2:
         return res
 ```
 
-岛屿数量等
+岛屿数量
+
+```python
+class Solution:
+    def numIslands(self, grid):
+        row, col, ret = len(grid), len(grid[0]), 0
+
+        def dfs(x, y):
+            grid[x][y] = '0'
+            for c in [[0, 1], [0, -1], [1, 0], [-1, 0]]:
+                nx, ny = x + c[0], y + c[1]
+                if 0 <= nx < row and 0 <= ny < col and grid[nx][ny] == '1':
+                    dfs(nx, ny)
+
+        for i in range(row):
+            for j in range(col):
+                if grid[i][j] == '1':
+                    dfs(i, j)
+                    ret += 1
+        return ret
+```
 
 ### 2.binary search
+
+求x的平方根
+
+```python
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        l, r, ans = 0, x, -1
+        while l <= r:
+            mid = (l + r) // 2
+            if mid * mid <= x:
+                ans = mid
+                l = mid + 1
+            else:
+                r = mid - 1
+        return ans
+```
 
 ### 3.sliding window
 
@@ -195,7 +229,7 @@ move them simutanously
 输出: 3
 解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
 
-```
+```python
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         cur, res = [], 0
@@ -206,6 +240,7 @@ class Solution:
             res = max(len(cur),res)
         return res
 ```
+
 recursion
 
 fibonacci, binary tree
