@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Algorithm  - Isaray&#39;s blog</title><meta name="Description" content="算法导论复习"><meta property="og:title" content="Algorithm " />
+<meta property="og:description" content="算法导论复习" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Isaray.github.io/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" /><meta property="og:image" content="https://Isaray.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-01-31T22:46:27+08:00" />
+<meta property="article:modified_time" content="2021-01-31T23:50:37+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://Isaray.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Algorithm "/>
+<meta name="twitter:description" content="算法导论复习"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://Isaray.github.io/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" /><link rel="next" href="https://Isaray.github.io/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Algorithm ",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/Isaray.github.io\/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA\/"
+        },"genre": "posts","keywords": "Algorithm","wordcount":  423 ,
+        "url": "https:\/\/Isaray.github.io\/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA\/","datePublished": "2021-01-31T22:46:27+08:00","dateModified": "2021-01-31T23:50:37+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Isaray"
+            },"description": "算法导论复习"
+    }
+    </script><style>
+             
+.search {
+    position: relative;
+    padding-top: 3.5rem;
+    padding-bottom: 1rem;
+    width: 57.5%;
+    margin: 0 auto;
+    background: white;
+    opacity: .95;
+}
+[theme=dark] .search {
+    background: #3a3535;
+}
+
+[theme=dark] .search header,
+.search header {
+    background-color: #f8f8f8;
+}
+
+[theme=dark] .search header:hover,
+.search header:hover {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.search header h1 {
+    padding-left: 1rem;
+    background: white;
+}
+[theme=dark] .search header h1 {
+    background: #3a3535;
+}
+
+[theme=dark] .search input,
+.search input {
+	height: initial;
+    width: initial;
+    color: initial;
+	background-color: white;
+	margin: 0 0 0 1rem;
+	border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+	-webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.search #search-results {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+[theme=dark] a:active, [theme=dark] a:hover {
+    color: #2d96bd;
+}
+
+.search hr {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+        </style>
+    </head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Isaray&#39;s blog">Isaray&#39;s blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/categories/projects/"> Projects </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="/search/"><i class='fas fa-fw fa-search'></i> search </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Isaray&#39;s blog">Isaray&#39;s blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/categories/projects/" title="">Projects</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="/search/" title=""><i class='fas fa-fw fa-search'></i>search</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container">
+                    <div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Algorithm </h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Isaray</a></span>&nbsp;<span class="post-category">included in <a href="/categories/courses/"><i class="far fa-folder fa-fw"></i>Courses</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-31">2021-01-31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;423 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#算法复杂度">【算法复杂度】：</a>
+      <ul>
+        <li><a href="#时间复杂度">时间复杂度：</a>
+          <ul>
+            <li><a href="#--o-渐进上界">- $O$() 渐进上界</a></li>
+            <li><a href="#--theta-渐进紧确界">- $\theta$() 渐进紧确界</a></li>
+            <li><a href="#--omega-渐进下界">- $\Omega$() 渐进下界</a></li>
+            <li><a href="#根据递归式求o和-omega的三种方法">根据递归式求$O$()和 $\Omega$()的三种方法：</a></li>
+            <li><a href="#strassen算法">strassen算法</a></li>
+          </ul>
+        </li>
+        <li><a href="#空间复杂度">空间复杂度：</a></li>
+        <li><a href="#高级分析技巧摊还分析">高级分析技巧【摊还分析】：</a>
+          <ul>
+            <li><a href="#聚合分析">聚合分析：</a></li>
+            <li><a href="#核算法">核算法：</a></li>
+            <li><a href="#势能法">势能法：</a></li>
+          </ul>
+        </li>
+        <li><a href="#算法分析概率分析和随机算法">算法分析：概率分析和随机算法</a>
+          <ul>
+            <li><a href="#经典例题">经典例题：</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#排序算法">【排序算法】：</a>
+      <ul>
+        <li><a href="#基于比较的排序">基于比较的排序：</a>
+          <ul>
+            <li><a href="#1--插入排序-insertion-sort">1.  插入排序 Insertion sort</a></li>
+            <li><a href="#2-选择排序">2. 选择排序</a></li>
+            <li><a href="#3-冒泡排序">3. 冒泡排序</a></li>
+            <li><a href="#4-归并排序">4. 归并排序</a></li>
+            <li><a href="#5--快速排序--重点">5.  快速排序  （重点）</a></li>
+            <li><a href="#6-堆排序">6. 堆排序</a></li>
+          </ul>
+        </li>
+        <li><a href="#基于非比较的排序">基于非比较的排序：</a>
+          <ul>
+            <li><a href="#7计数排序">7.计数排序</a></li>
+            <li><a href="#8基数排序">8.基数排序</a></li>
+            <li><a href="#9桶排序">9.桶排序</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#中位数和顺序统计量">【中位数和顺序统计量】：</a>
+      <ul>
+        <li><a href="#randomized-select">RANDOMIZED-SELECT</a></li>
+        <li><a href="#select算法期望为线性时间">SELECT()算法，期望为线性时间</a></li>
+      </ul>
+    </li>
+    <li><a href="#查找算法">【查找算法】</a>
+      <ul>
+        <li><a href="#顺序查找">顺序查找</a></li>
+        <li><a href="#二分查找">二分查找</a></li>
+        <li><a href="#哈希查找">哈希查找</a></li>
+      </ul>
+    </li>
+    <li><a href="#分治策略">【分治策略】</a></li>
+    <li><a href="#动态规划">【动态规划】</a>
+      <ul>
+        <li><a href="#经典问题">经典问题：</a>
+          <ul>
+            <li><a href="#钢条切割问题">钢条切割问题</a></li>
+            <li><a href="#矩阵链的乘法">矩阵链的乘法</a></li>
+            <li><a href="#完全背包问题贪心算法不能达到最优">完全背包问题（贪心算法不能达到最优）：</a></li>
+            <li><a href="#最长公共子序列">最长公共子序列</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#贪心算法">【贪心算法】</a>
+      <ul>
+        <li><a href="#经典问题-1">经典问题：</a>
+          <ul>
+            <li><a href="#活动选择问题会议调度安排问题">活动选择问题/会议调度安排问题：</a></li>
+            <li><a href="#0-1背包问题和分数背包问题">0-1背包问题和分数背包问题</a></li>
+            <li><a href="#赫夫曼编码">赫夫曼编码</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#堆">【堆】</a>
+      <ul>
+        <li><a href="#堆排序之前提到过">堆排序（之前提到过）</a></li>
+        <li><a href="#优先队列">优先队列</a></li>
+        <li><a href="#斐波那契堆">斐波那契堆</a></li>
+      </ul>
+    </li>
+    <li><a href="#树">【树】</a>
+      <ul>
+        <li><a href="#二叉搜索树">二叉搜索树</a></li>
+        <li><a href="#红黑树">红黑树</a>
+          <ul>
+            <li><a href="#满足几个条件">满足几个条件：</a></li>
+            <li><a href="#红黑树的旋转">红黑树的旋转：</a></li>
+          </ul>
+        </li>
+        <li><a href="#avl树">AVL树</a>
+          <ul>
+            <li><a href="#avl树可以达到的效果最短边和最长边的差距不超过1">AVL树可以达到的效果：最短边和最长边的差距不超过1</a></li>
+          </ul>
+        </li>
+        <li><a href="#huffman-树-贪心算法中也会提到">Huffman 树 (贪心算法中也会提到)</a></li>
+      </ul>
+    </li>
+    <li><a href="#散列表哈希表">【散列表/哈希表】</a>
+      <ul>
+        <li><a href="#发生哈希碰撞时的处理方法老师提问">发生哈希碰撞时的处理方法（老师提问）：</a></li>
+      </ul>
+    </li>
+    <li><a href="#动态表">【动态表】</a></li>
+    <li><a href="#图">【图】</a>
+      <ul>
+        <li><a href="#图的表示">图的表示：</a></li>
+        <li><a href="#广度优先搜索bfs">广度优先搜索BFS</a></li>
+        <li><a href="#深度优先搜索dfs">深度优先搜索DFS</a></li>
+        <li><a href="#最小生成树">最小生成树</a>
+          <ul>
+            <li><a href="#kruskal">Kruskal</a></li>
+            <li><a href="#prim">Prim</a></li>
+          </ul>
+        </li>
+        <li><a href="#单源最短路径不能包含负权回路">单源最短路径（不能包含负权回路）</a>
+          <ul>
+            <li><a href="#bellman-ford权值可以为负数不考">Bellman-Ford（权值可以为负数）*不考</a></li>
+            <li><a href="#dijkstra权值不能为负数">Dijkstra（权值不能为负数）</a></li>
+          </ul>
+        </li>
+        <li><a href="#所有结点对的最短路径">所有结点对的最短路径</a>
+          <ul>
+            <li><a href="#floyd-warshall">Floyd-Warshall</a></li>
+          </ul>
+        </li>
+        <li><a href="#最大流和最小切割">最大流和最小切(割)</a>
+          <ul>
+            <li><a href="#几个概念p419的图">几个概念P419的图</a></li>
+            <li><a href="#ford-fulkerson算法">Ford-Fulkerson算法</a></li>
+            <li><a href="#edmonds-karp算法">Edmonds-Karp算法</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#p和npp616">【P和NP】P616</a>
+      <ul>
+        <li><a href="#p和np">P和NP</a>
+          <ul>
+            <li><a href="#np">NP</a></li>
+          </ul>
+        </li>
+        <li><a href="#几个np问题">几个NP问题</a>
+          <ul>
+            <li><a href="#tsp问题-旅行商问题-高复杂度问题">TSP问题 旅行商问题 高复杂度问题</a></li>
+            <li><a href="#clique问题clique完全图团每个点和其他边都相邻对于一个图找出里面的最大团等于几">clique问题，clique完全图(团，每个点和其他边都相邻)，对于一个图找出里面的最大团等于几</a></li>
+            <li><a href="#sat问题satisfiability-problem布尔表达式的可满足性问题">SAT问题（satisfiability problem）布尔表达式的可满足性问题</a></li>
+          </ul>
+        </li>
+        <li><a href="#近似算法">近似算法</a>
+          <ul>
+            <li><a href="#顶点覆盖问题">顶点覆盖问题</a></li>
+            <li><a href="#旅行商问题">旅行商问题</a></li>
+            <li><a href="#集合覆盖问题">集合覆盖问题</a></li>
+            <li><a href="#归约关系">归约关系</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#实验总结">实验总结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="算法导论复习">算法导论【复习】</h1>
+<p>教材：算法导论第三版</p>
+<p>本博客内容均为自行整理，以供学过算法的同学快速回忆之用。</p>
+<p>本人第一篇博客，当然要献给算法啦！博客是在复习的时候整理的，有点类似于记忆碎片，比较简略，欢迎大家在评论区讨论、补充、纠正。
+](算法导论期末复习大纲)</p>
+<h2 id="算法复杂度">【算法复杂度】：</h2>
+<p>假设所需计算机资源的量只和<strong>问题规模</strong>、<strong>算法输入</strong>和<strong>算法本身的函数</strong>相关。</p>
+<h3 id="时间复杂度">时间复杂度：</h3>
+<p>用基本操作步数衡量，独立于机器。
+在不同情况下算法复杂度也是不同的，常见的情况有最好情况下，平均情况下，最坏情况下的时间复杂度。</p>
+<p>首先，是时间复杂度的三个概念O(),$\theta$(),$\omega$()。</p>
+<p>【算法导论】P26，三张图有助于理解</p>
+<h4 id="--o-渐进上界">- $O$() 渐进上界</h4>
+<blockquote>
+<p>{f(n):存在正常量c,$n_0$，使得对所有n&gt;=$n_0$，有0&lt;=f(n)&lt;=cg(n)}</p>
+</blockquote>
+<h4 id="--theta-渐进紧确界">- $\theta$() 渐进紧确界</h4>
+<blockquote>
+<p>{f(n):存在正常量$c_1$、$c_2$和$n_0$，使得对所有n&gt;=$n_0$，有0&lt;=$c_1$g(n)&lt;=f(n)&lt;=$c_2$g(n)}</p>
+</blockquote>
+<h4 id="--omega-渐进下界">- $\Omega$() 渐进下界</h4>
+<blockquote>
+<p>{f(n):存在正常量c,$n_0$，使得对所有n&gt;=$n_0$，有0&lt;=cg(n)&lt;=f(n)}</p>
+</blockquote>
+<blockquote>
+<p>另外：</p>
+<p>1.$\omicron$()代表非渐进紧确上界，$\omega$()代表非渐进紧确下界。o(g(n)) = {f(n): 对<strong>任意</strong>正常数c&gt;0，使得对所有n&gt;=$n_0$，有0&lt;=f(n)&lt;cg(n)}</p>
+<p>2.$O()$和$\Omega$()如果非常紧的话都会趋向于$\theta$()。（有一种紧确界的证明方式就是这样的）</p>
+<p>3.$O()$往往差了些也是对的，但是不准确，比如用O($n^{100}$)来描述快速排序的平均时间复杂度也是对的,但是不如O(nlogn)来得确切。所以比较紧的界才有意义，能求出$\theta$()最好啦。（另外，用$o(nlogn)$来描述快速排序的平均情况就不行，因为$\omicron$()代表非渐进紧确上界，看那个定义中是没有等号的，要注意大O和小o的区别）。</p>
+</blockquote>
+<h4 id="根据递归式求o和-omega的三种方法">根据递归式求$O$()和 $\Omega$()的三种方法：</h4>
+<ul>
+<li>代入法P48：猜测复杂度式子，假设出来（可能需要带低阶的参数），代入递归式并证明。</li>
+<li>递归树法P50：把递归树画出来，然后累加（可能会用到级数相关知识）。那种分成两颗不均匀子树的情况常用这种方法求解。</li>
+<li>主方法P53：可以用递归树法推导，推导过程中会用到$n^{log_ba} = a^{log_bn}$的性质P56。</li>
+</ul>
+<p>令a$\ge$1和b&gt;1是常数，f(n)是一个函数，T(n)是定义在非负整数上的递归式： T(n) = a * T(n/b) + f(n)，其中我们将n/b解释为$\lfloor n/b\rfloor$或者$\lceil n/b\rceil$。那么T(n)有如下渐进界。</p>
+<ul>
+<li>
+<ol>
+<li>对某个常数$\epsilon&gt;0$，有 f(n) = $O(n^{log_ba−\epsilon})$, 则 T(n) = $\theta(n^{log_ba})$。（叶子节点占主导）</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>f(n) = $\theta(n^{log_ba})$, 则 T(n) = $\theta(n^{log_ba}logn)$ 。（根节点叶子结点差不多）</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>对某个常数$\epsilon&gt;0$，有 f(n) = $\Omega(n^{log_ba−\epsilon})$, 且对某个常数c&lt;1和所有足够大的n有$af(n/b)\le cf(n)$，则 T(n) = $\theta(f(n))$。（根节点占主导）</li>
+</ol>
+</li>
+</ul>
+<h4 id="strassen算法">strassen算法</h4>
+<p>书中有穿插着讲矩阵乘法的strassen算法，以它的复杂度为例。P44有伪代码。一般针对方阵，不是方阵可以补成方阵。</p>
+<blockquote>
+<p>为什么要strassen算法？可能是因为原来效率太低了$O(n^3)$，即使做分块运算效率也很低，用加入一些矩阵加法的运算，减少矩阵乘法的运算的方法来提高效率，<strong>用strassen做矩阵乘法可以达到$O(n^{log_27})$相当于$O(n^{2.81})$</strong>。strassen算法就是运用了分而治之的思想将矩阵分块套公式运算，本质上还是“简化”的矩阵乘法。</p>
+<p>为什么strassen算法的时间复杂度是线性的？P124（1/5+7/10&lt;1）继续迭代下去就是线性的。</p>
+<p>博主用c语言实现了一下strassen算法，按照伪代码的思路没问题，就定义一下矩阵的加法、减法和乘法运算就可以了，在2^11次规模下真的很慢，要运行将近一个小时，比普通乘法还慢（即使用strassen算法，在较小规模的情况下可以还是使用普通乘法）。有同学用c++里的vector来实现，好像速度还挺快，以后可以尝试一下。</p>
+</blockquote>
+<blockquote>
+<p>另外：做课后习题的时候，需要掌握简单的级数展开的知识，可以看一下前几章的内容。
+lg(n!)=$\theta$(nlgn)课后习题会用到。</p>
+<p>有的时候还要用到高中求解数列通项公式的技巧，同除啊换元啊什么的。</p>
+<p>说实话，算法里有很多内容在离散数学中都讲过，感觉又温习了一遍！</p>
+<p>P54页上有提到“非多项式意义上大于”的问题（ T(n)=2T(n/2)+nlogn，nlogn并不在多项式意义上大于n），不能用主方法，但可以用递归树方法求解。具体的话，看书啦。</p>
+</blockquote>
+<h3 id="空间复杂度">空间复杂度：</h3>
+<p>在此不加以赘述。</p>
+<h3 id="高级分析技巧摊还分析">高级分析技巧【摊还分析】：</h3>
+<ul>
+<li>Ask：<em>三种摊还分析的方法具体指的是什么？</em></li>
+<li>Ans：聚合分析、核算法、势能法。</li>
+</ul>
+<h4 id="聚合分析">聚合分析：</h4>
+<blockquote>
+<p>先算出一些操作的总数上限，取平均值。（有很多操作，打包计算）</p>
+</blockquote>
+<h4 id="核算法">核算法：</h4>
+<blockquote>
+<p>对某些操作多分配一些代价，下次可以从信用里面取代价。（有几种操作，操作复杂度差不多，让简单操作多算几个，预支一些复杂操作的信用，简化分析过程）</p>
+</blockquote>
+<h4 id="势能法">势能法：</h4>
+<blockquote>
+<p>定义一个势能函数。</p>
+<p>以书中push、pop、multipop为例，他是<strong>以栈中还有多少个元素</strong>为势函数。$c_i$和$c_i^{hat}$一个表示真实开销一个表示上界。</p>
+</blockquote>
+<p>动态表：</p>
+<blockquote>
+<p>Ask:动态表有什么用？</p>
+<p>Ans:对到底需要分配多少空间，心里没有数，动态表不够用了可以扩张，存的内容变少了也可以缩减表空间。</p>
+</blockquote>
+<blockquote>
+<p>课后习题：第一题，pultipush()不是O(1)，因为不知道push多少个，如果改成multipush_5()的摊还分析，还是O(1)的级别。</p>
+<p><em>n个操作合起来的代价，和一个操作的代价题目要看清楚。</em></p>
+</blockquote>
+<p><strong>找中转站的思维</strong>：分两步解决问题，1-&gt;2,2-&gt;3，则1-&gt;3，例如所有线路都通过人民广场，那么所有站点都相互可达。（所有问题都可以转换为一个问题，那个问题又有某种性质，那么所有问题都具有这种性质）。</p>
+<h3 id="算法分析概率分析和随机算法">算法分析：概率分析和随机算法</h3>
+<h4 id="经典例题">经典例题：</h4>
+<ul>
+<li>生日问题：用逆向思维。课后例题经典，概率论中也会学习。P73。练习5.4-1</li>
+<li>球与箱子</li>
+<li>特征序列</li>
+</ul>
+<h2 id="排序算法">【排序算法】：</h2>
+<ul>
+<li><em>基于比较的排序算法平均时间复杂度最小为O(nlgn)，基于非比较的排序平均时间复杂度最小为O(n)</em>.</li>
+</ul>
+<h3 id="基于比较的排序">基于比较的排序：</h3>
+<h4 id="1--插入排序-insertion-sort">1.  插入排序 Insertion sort</h4>
+<blockquote>
+<p>给定一个数组，每次把新来的数插入之前已经排好的序列中，从只有一个数的序列直到把所有数都排列进去。例如，洗牌。</p>
+</blockquote>
+<ul>
+<li>时间复杂度$O(n^2)$</li>
+</ul>
+<h4 id="2-选择排序">2. 选择排序</h4>
+<blockquote>
+<p>头部已排好序，尾部未排好序，每次从未排好序的里面选最值放到已排好序的序列尾端。</p>
+</blockquote>
+<ul>
+<li>时间复杂度$O(n^2)$</li>
+</ul>
+<h4 id="3-冒泡排序">3. 冒泡排序</h4>
+<blockquote>
+<p>两重循环，两两比较，每次最值沉底或上浮。</p>
+</blockquote>
+<ul>
+<li>时间复杂度$O(n^2)$</li>
+</ul>
+<h4 id="4-归并排序">4. 归并排序</h4>
+<p>留到分治策略那一部分详细叙述。</p>
+<blockquote>
+<p>分解：n-&gt;n/2</p>
+<p>解决：使用归并排序递归地排序两个子序列</p>
+<p>合并：合并两个排好序的子序列</p>
+</blockquote>
+<h4 id="5--快速排序--重点">5.  快速排序  （重点）</h4>
+<p>跟基准元比较，分成前后两堆，比基准元小的和比基准元大的。</p>
+<p>老师在答疑课上问到我了，我应该这辈子都不会忘了。
+我被问到的问题→<em>存不存在一种算法的平均情况下的时间复杂度和最坏情况下的时间复杂度不一样？举个例子。 我回答了快速排序。</em></p>
+<ul>
+<li>平均情况下的时间复杂度：O($nlgn$)</li>
+<li>最坏情况下的时间复杂度：O($n^2$)。<em>如何达到？</em>  基准元选的不好，每次都是最大值或者是最小值，每次两边分布一边很多一边很少。每次从小到大或者是从大到小排的数组，效果比较差。<em>每次首尾和基准元比大小，不对就交换</em></li>
+<li>随机选取基准元的快速排序。随机选取基准元平均情况O($nlgn$)，最差情况也是O($n^2$)。</li>
+</ul>
+<blockquote>
+<p>为了防止有人蓄意构造一个序列，使得快速排序变成最坏情况，我们可以<strong>随机</strong>选取基准元，**random_select()**算法。</p>
+</blockquote>
+<h4 id="6-堆排序">6. 堆排序</h4>
+<p>建堆的复杂度：O(n)</p>
+<p>堆一般用数组存储</p>
+<blockquote>
+<p>大顶堆：根节点的值比叶子节点的值大</p>
+<p>注意几个函数即可，建堆的时候从1/2处（第一个有孩子的结点）往上调整，和孩子比较，max-heapify()</p>
+<p>堆排序就是构造完大顶堆之后，extract-max()和数组最后一个交换，heapsize- -，然后再对根max-heapify()，以此类推。</p>
+</blockquote>
+<h3 id="基于非比较的排序">基于非比较的排序：</h3>
+<p>Ask：<em><strong>为什么非比较排序的复杂度可以到达O(n)是不是很神奇？有什么需要满足的条件吗？</strong></em>  - <em>排序算法为什么可以到O(n)，这不是很奇怪吗？</em></p>
+<p>Ans:<em>非比较排序的【前提】：输入数据的种类总是有限的、有一定范围的，列举一下算法的例子，例如人的身高统计，统计到厘米的精度，还是0.0000001的精度，范围很大就不一定行了。基于非比较的排序实际上是把问题范围从大问题缩小到小问题，用空间换时间。</em></p>
+<p>Ask：基于比较的排序算法有一棵树，长什么样子？P107</p>
+<p>Ans:路径的长度就是比较的次数，每个叶子节点就是输入的排序。排列组合，三个数有多少种排列，3！。多少种排序情况，就有多少个叶子结点，要经过多少次查找才能找到。</p>
+<h4 id="7计数排序">7.计数排序</h4>
+<blockquote>
+<p>有一定条件，元素个数和种类是指定的。基于统计的排序。</p>
+<p>确定数字种类，分别统计数量，在新的数组的相应位置插入这个数字。</p>
+</blockquote>
+<h4 id="8基数排序">8.基数排序</h4>
+<blockquote>
+<p>把数分为几个部分，分别排序。例如一个三位数，先排个位再排十位，最后排百位。</p>
+<p>分成几个位数，有限个。先排最低位。在d和k参数。。</p>
+</blockquote>
+<h4 id="9桶排序">9.桶排序</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%e7%ae%97%e6%b3%95%e5%af%bc%e8%ae%ba/%e6%8e%92%e5%ba%8f.png"
+        data-srcset="/images/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/%E6%8E%92%E5%BA%8F.png, /images/%e7%ae%97%e6%b3%95%e5%af%bc%e8%ae%ba/%e6%8e%92%e5%ba%8f.png 1.5x, /images/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/%E6%8E%92%E5%BA%8F.png 2x"
+        data-sizes="auto"
+        alt="/images/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/%E6%8E%92%E5%BA%8F.png"
+        title="排序" /></p>
+<blockquote>
+<p>P119找最小值，找最大值，要找n次。同时找最小值和最大值，实际上只用找1.5n次。方法：取两个数，其中大的之和最大值比，小的之和最小值比。</p>
+</blockquote>
+<h2 id="中位数和顺序统计量">【中位数和顺序统计量】：</h2>
+<p>如何求中位数：</p>
+<p>方法一：先排序，排序。</p>
+<p>方法二：select算法</p>
+<h3 id="randomized-select">RANDOMIZED-SELECT</h3>
+<blockquote>
+<p>O(n)的复杂度。</p>
+<p>用了快速排序的partition方法，分两段。</p>
+<p>可以用于找中位数，但是扩展来说找1/4，1/3位置的数都可以。找分位数的可以用于设计等高的直方图，更方便描述数据集合的轮廓。设计等高直方图，找n次SELECT可以达到O(n),也可以直接排序有O(nlogn)的复杂度，所以O(min(nlogn,n))。有多种方法哦！不要思维定势。</p>
+</blockquote>
+<h3 id="select算法期望为线性时间">SELECT()算法，期望为线性时间</h3>
+<blockquote>
+<p>五个五个分组，每组排好序，找中位数，去掉四分之三不用比较的，再继续。</p>
+<p>复杂度是O(n)</p>
+</blockquote>
+<p>最坏时间为线性时间，暂时不考试。</p>
+<h2 id="查找算法">【查找算法】</h2>
+<h3 id="顺序查找">顺序查找</h3>
+<p>一般基于数组，无序的数组就可。O(n)</p>
+<h3 id="二分查找">二分查找</h3>
+<p>一般基于数组，但是要有序的数组。</p>
+<blockquote>
+<p>插入删除查询的复杂度来分析两个算法。插入：顺序查找要O(1)插在最后一位，二分查找是有序的，平均O(n)的开销。如果删了不移动，分别是O(n)和O(logn)，如果删了要移动，则都是O(n)。查找代价分别是O(n)和O(logn)。</p>
+</blockquote>
+<p>**二叉搜索树的性能来对比，二叉搜索树不是重点，不能保证任何一个复杂度，我们寻求的终点是二叉平衡树！！！**插入、删除、修改全部可以变成O(logn)。<em>二叉搜索树可以达到O(logn)这个是不对的。</em></p>
+<h3 id="哈希查找">哈希查找</h3>
+<p>直接寻址法；除留余数法；开放寻址法（线性探测，二次探查，双双重散列），再哈希法</p>
+<h2 id="分治策略">【分治策略】</h2>
+<p>分治算法怎么理解？</p>
+<p>举几个例子：归并排序，快速排序，strassen算法的矩阵乘法。</p>
+<p>strassen算法O($n^{log7}$)=O($n^{2.81}$)很有名</p>
+<h2 id="动态规划">【动态规划】</h2>
+<p>和分治算法的区别就是子问题可以<em>复用</em>。例如，分治算法的矩阵乘法，分块计算就不相关。</p>
+<h3 id="经典问题">经典问题：</h3>
+<h4 id="钢条切割问题">钢条切割问题</h4>
+<p>假设0-9米的钢条情况都已经知道了，到10划分最优子结构也知道了。</p>
+<h4 id="矩阵链的乘法">矩阵链的乘法</h4>
+<h4 id="完全背包问题贪心算法不能达到最优">完全背包问题（贪心算法不能达到最优）：</h4>
+<blockquote>
+<p>价值、体积、背包大小。子体积的最优解全部记录下来。</p>
+</blockquote>
+<h4 id="最长公共子序列">最长公共子序列</h4>
+<blockquote>
+<p>用一个二维的矩阵记录，一行一行来，然后有一个表达式，就是(i,j)的值和(i-1,j)和(i,j-1)相关，如果这一位刚好相等，在两者较大的哪个基础上加1即可，不相同取其中较大的那个即可。在写算法的时候一路走，一路会记录方向，方便往回找。</p>
+</blockquote>
+<h2 id="贪心算法">【贪心算法】</h2>
+<p>每次都做了局部最优得选择，但不一定是全局最优的。</p>
+<h3 id="经典问题-1">经典问题：</h3>
+<h4 id="活动选择问题会议调度安排问题">活动选择问题/会议调度安排问题：</h4>
+<p>选择最早开始或者最不冲突的是无法达到全局最优的，但是用最早结束的是可以达到最优的。</p>
+<h4 id="0-1背包问题和分数背包问题">0-1背包问题和分数背包问题</h4>
+<ul>
+<li>老师提问→<em>什么问题不能用贪心算法解决？举几个例子。</em></li>
+<li>answer：0-1背包问题，不可用贪心算法解决，要用动态规划的算法解决，但是分数背包问题可以用贪心算法解决。*分数背包问题如何解决？*每次都取性价比最高的装满书包。</li>
+</ul>
+<h4 id="赫夫曼编码">赫夫曼编码</h4>
+<p>为了使文本变短。对频率进行排列。</p>
+<p>有一个性质就是头部不冲突，怎么解释？</p>
+<p>前缀码长得不一样，使得编码是唯一的，能识别的。</p>
+<h2 id="堆">【堆】</h2>
+<h3 id="堆排序之前提到过">堆排序（之前提到过）</h3>
+<p>堆的话一般是数组，堆可以转变成一棵树P84。大顶堆（父结点的值比子结点）、小顶堆。</p>
+<p>建堆的复杂度O(n)，$theta(n)$。从第一个有子节点的往上走。</p>
+<p>堆排序的开销是O(nlogn)。堆排序的开销不可能是O(logn)。</p>
+<p>堆的好处是可以用来做优先级队列。</p>
+<h3 id="优先队列">优先队列</h3>
+<p>一般用堆来实现。</p>
+<p>按照key的大小，每次选第一大的。</p>
+<h3 id="斐波那契堆">斐波那契堆</h3>
+<p>除了删除和取最值操作和二叉堆的代价一样，其他操作的均摊代价可以达到O(1)，非常理想。P290</p>
+<h2 id="树">【树】</h2>
+<ul>
+<li>Ask:<em>树和图的最大区别是什么？</em></li>
+<li>Ans：树没有环。</li>
+</ul>
+<h3 id="二叉搜索树">二叉搜索树</h3>
+<p>用堆构成的二叉树，不是二叉搜索树。二叉树是左边小右边大，堆是父节点最小。</p>
+<p>二叉树不一定是平衡树，平衡树才是目的！！</p>
+<p>利用二叉搜索树中序遍历输出就是已经排好序的结果。</p>
+<p>插入：比较比它则往左边走，比它大则往右边走，直到找到合适的位置。</p>
+<p>查找：比较比它则往左边走，比它大则往右边走，直到查找。</p>
+<p>删除：有三种案例。</p>
+<h3 id="红黑树">红黑树</h3>
+<p>Ask:为什么红黑树是一个平衡树？</p>
+<p>Ans：在红黑树里根节点到叶节点的路径，最长的不会超过最短的两倍，可以看作同一个量级。为什么可以满足这个性质呢？红节点底下只能是黑结点。</p>
+<p>什么是黑高？</p>
+<blockquote>
+<p>从该结点到叶子结点的简单路径，包含相同数目的黑色结点</p>
+</blockquote>
+<p>例如，一颗空的树，插入一个1，那黑高等于几？黑高等于1。因为根节点必须是黑色的（但算黑高的时候，本身不算），Nil结点也是黑色的。</p>
+<p>每次插入新的结点都是红色的。</p>
+<h4 id="满足几个条件">满足几个条件：</h4>
+<ul>
+<li>
+<p>1.每个结点要么红，要么黑</p>
+</li>
+<li>
+<p>2.根节点为黑色</p>
+</li>
+<li>
+<p>3.叶子结点都为黑色</p>
+</li>
+<li>
+<p>4.每个红色结点下只能接黑色结点</p>
+</li>
+<li>
+<p>5.每个点的黑高都相等</p>
+<p>最后可以达到相对平衡的程度，最长边最多是最短边的两倍，不会再长了。</p>
+</li>
+</ul>
+<h4 id="红黑树的旋转">红黑树的旋转：</h4>
+<p>为了维护黑高的性质。</p>
+<p>红黑树结点插入的过程，伴随旋转变色的三种情况（若插入红节点，父亲结点也为红）：</p>
+<p>1.叔结点是红色。父结点变红色，本身和叔结点变黑色。</p>
+<p>2.叔结点是黑色，插入的结点是左孩子，制作左旋转，变case3。</p>
+<p>3.叔结点时黑色，插入的结点是右孩子，旋转+变色。</p>
+<h3 id="avl树">AVL树</h3>
+<h4 id="avl树可以达到的效果最短边和最长边的差距不超过1">AVL树可以达到的效果：最短边和最长边的差距不超过1</h4>
+<p>具体的实现再说吧，了解一下好了</p>
+<h3 id="huffman-树-贪心算法中也会提到">Huffman 树 (贪心算法中也会提到)</h3>
+<ul>
+<li>Ask:Huffman编码是什么？如何实现？</li>
+<li>Ans:以往都是用定长码标记，用Huffman 树可以生成变长的前缀码，使得短的编码不是任何长的编码的前缀（代表的key都在叶子节点上，无前缀），又使得出现频率较高的编码长度较短，达到压缩的目的。用<strong>贪心算法</strong>的思想实现，每次找权重最小的两个结点，合成一个新的权重，再不断地重复上述操作，最后生成一棵树。</li>
+</ul>
+<h2 id="散列表哈希表">【散列表/哈希表】</h2>
+<p>直接寻址法，给你一个位置，在这个位置上自己扩展。拉链法。</p>
+<p>开放寻址法，冲突了之后。线性探查：依次线性往后找；二次探查：后续探查的时候要加一个偏移量，有一个平方；双重散列：有两个散列函数线性组合去查找。反正给了这么多空间，满了就去占别人的空间。</p>
+<h3 id="发生哈希碰撞时的处理方法老师提问">发生哈希碰撞时的处理方法（老师提问）：</h3>
+<ul>
+<li>answer：（1）拉链法（链式存储方法）新开一个链表存储（2）开放定址法：在原数组上存储。开放定址法又有一些具体的方法。</li>
+</ul>
+<h2 id="动态表">【动态表】</h2>
+<p>整块扩大和缩小 分析复杂度</p>
+<h2 id="图">【图】</h2>
+<h3 id="图的表示">图的表示：</h3>
+<p>邻接矩阵：稠密的话可以用它。</p>
+<p>邻接链表：稀疏的话可以用它。</p>
+<h3 id="广度优先搜索bfs">广度优先搜索BFS</h3>
+<p>广度优先遍历，先找到他所有的子节点，再遍历子节点下一层。</p>
+<blockquote>
+<p>队列</p>
+</blockquote>
+<h3 id="深度优先搜索dfs">深度优先搜索DFS</h3>
+<p>深度优先遍历，先找到最深的再不断遍历过来。</p>
+<p>Ask：旅行商问题里的近似问题的算法，用的是BFS还是DFS？</p>
+<p>Ans：旅行商问题，找欧拉回路，找最小生成树，然后双向，再优化替换点，典型的深度遍历。</p>
+<blockquote>
+<p>栈</p>
+</blockquote>
+<h3 id="最小生成树">最小生成树</h3>
+<p>Ask:最小生成树的定义？</p>
+<p>Ans：树是没有回路的，和图不同。再图中找到一棵树，总权重最低。</p>
+<p>最小生成树有什么用？answer：举个例子，使得所有的结点之间连接成本最低。</p>
+<ul>
+<li>Ask:<em>这两个算法的本质是什么？有什么原则？</em></li>
+<li>Ans：本质在于有两个不同的集合，一个是已经选取的边的集合S，一个是未经选取的边的集合E-S，每次选取的边都是连接这两个集合的最短边，它必在最小生成树里，只是选取的策略不同罢了。</li>
+</ul>
+<h4 id="kruskal">Kruskal</h4>
+<ul>
+<li>每次选取最小的边（只要不是同根，不会形成一条回路）。</li>
+<li>最坏情况下：O(mlogm)</li>
+</ul>
+<h4 id="prim">Prim</h4>
+<ul>
+<li>从一个结点往外扩展，每次选取S和V-S之间的最短边。</li>
+<li>最坏情况下：O($n^2$)</li>
+</ul>
+<h3 id="单源最短路径不能包含负权回路">单源最短路径（不能包含负权回路）</h3>
+<p>首先定义了两个函数：(v.d代表到源点的距离，v.p代表连到该点的上一个点)P377</p>
+<p>初始化函数：每个点的v.d=无穷和v.p=nil</p>
+<p>松弛函数：如果v.d&gt;u.d+w(u,v)，那么v.d=u.d+w(u,v)，v.p=u。</p>
+<blockquote>
+<p>感觉松弛操作更像拧紧螺丝，把线卷起来。</p>
+</blockquote>
+<h4 id="bellman-ford权值可以为负数不考">Bellman-Ford（权值可以为负数）*不考</h4>
+<ul>
+<li>看书上P379的伪代码就懂了。首先，初始化。而后，对所有边进行松弛操作，这样做V-1次（对所有边的松弛操作）。最后，再对所有边用松弛条件去判断还会不会有变化，有变化则有负环，返回false，无变化则返回true。</li>
+<li>可能这样看会觉得挺有道理的，老师课上说的总结才是真的精辟。</li>
+<li>
+<blockquote>
+<p>此处，长度代表有几条边。</p>
+<p>最短路径长度&lt;=k-1</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">第一次可以找到长度为1的最短路径
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">第二次可以找到长度为2的最短路径
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">......
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">k-1轮可以算出长度为k-1的最短路径（最长的最短路径最大为k-1）
+</code></pre></td></tr></table>
+</div>
+</div><p>所以这样一来应该可以算出单源最短路径了。</p>
+<p>再进行一轮松弛，如果有变化的话，肯定就是有负环，找不到单元最短路径的情况啦！</p>
+<p>算法复杂度O(VE)。也很显然有很多不必要的操作嘛，就感觉像是穷举。</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>参考：blog:https://www.cnblogs.com/Jason-Damon/archive/2012/04/21/2460850.html</p>
+</blockquote>
+<h4 id="dijkstra权值不能为负数">Dijkstra（权值不能为负数）</h4>
+<p>本质是从一个点不断扩展的过程</p>
+<ul>
+<li>Dijkstra就像摊大饼，每次都把最小的纳入（贪心策略），然后做松弛操作。</li>
+<li>算法复杂度依赖于优先队列的实现。P386普通线性搜索，总体复杂度O($V^2$)，用二叉堆，O(ElgV)，用斐波那契堆，可以改善到O(VlgV+E)。</li>
+<li>最坏情况下：O($n^2$)</li>
+</ul>
+<h3 id="所有结点对的最短路径">所有结点对的最短路径</h3>
+<h4 id="floyd-warshall">Floyd-Warshall</h4>
+<h3 id="最大流和最小切割">最大流和最小切(割)</h3>
+<p>Ask:什么是最大流？</p>
+<p>Ans:两个点之间的流量最大，关心能不能运到，不关心运输时间。用FF算法，用增补网络。</p>
+<h4 id="几个概念p419的图">几个概念P419的图</h4>
+<ul>
+<li>残存网络：有残存容量（有流量不论正反，能够为容量增加的最大值）的边组成的网络</li>
+<li>增广路径 ：简单来说就是从源结点s到汇点t的一条/几条可以流通的边</li>
+<li>切割：把点集分为两部分S和T；<em>净流量</em>（f(S,T)）算s-&gt;t减去t-&gt;s,<em>容量</em>（c(S,T)）只算s-&gt;t的。</li>
+<li>每条边上都有最大的限流，边上标注的是流量而不是距离。</li>
+<li>最大流：从源结点s到汇点t，所有的可行路加起来，最多可以送多少。</li>
+<li>P425图</li>
+<li>贪心的找到一条直接去除是不行的。P425有翻转可以循环利用的。可能把非常霸道的一条边去掉了，断了多条边的路。课上有举例子。</li>
+<li>P423 最大流最小切割定理 三个等价条件</li>
+</ul>
+<h4 id="ford-fulkerson算法">Ford-Fulkerson算法</h4>
+<blockquote>
+<p>初始化增广网络。只要有一条路，就找路段中最小的当作这条路的流量。（在图中可以反向表示，即补偿表示，表示成残存网络的形式）直到没有路可以走，总流量也就求出来了。
+O(E|f*|)</p>
+</blockquote>
+<h4 id="edmonds-karp算法">Edmonds-Karp算法</h4>
+<p>用广度优先搜索算法改进Ford-Fulkerson算法。
+O(V$E^2$)</p>
+<p>P417 26.1-1 最大流G&gt;=G',和G&lt;=G‘来证明最大流的值相等。假设G&rsquo;中存在包含该路径的最大流，那么把该路径替换，这条路也出现在G中，G的最大流肯定大于等于它。。。</p>
+<p>多个s，再模拟一个总体的s。P417</p>
+<p>广度优先用队列来做，一层一层的，先把儿子都找完再找孙子。</p>
+<p>摊大饼：估计长度+真实长度。</p>
+<h2 id="p和npp616">【P和NP】P616</h2>
+<h3 id="p和np">P和NP</h3>
+<ul>
+<li>p表示多项式，是Polynomial的缩写。多项式时间内可解。</li>
+<li>NP表示在多项式时间内可以验证结果。np问题是验证性问题，如果在多项式时间内可验证，则就是np问题。</li>
+<li>np完全问题</li>
+<li>多项式可归约，怎么表示</li>
+</ul>
+<p>什么是团问题？团是一个完全图，任意两点之间有连线。</p>
+<p>什么是顶点覆盖问题？找一个点的集合，这个点的集合是最少的，对于图中的边，至少有一个顶点在里面。对于一个只有点没有边的图，顶点覆盖问题返回什么？返回空集。图里有很多点，任意两点都有边，顶点覆盖返回什么？返回N-1（N-2就不行啦）</p>
+<p>什么是哈密尔顿回路问题？在一个大图中，是否存在所有点的简单回路。</p>
+<p>NP是不是P不知道，只知道NP问题难度差不多。怎么解决，我们想到一些近似算法。</p>
+<h4 id="np">NP</h4>
+<p>**<em>若一个算法能够在多项式时间之内被验证对错</em>，这个算法被称为NP算法。**NP问题是判定问题。</p>
+<p>例如旅行商问题：给出一条线路，要验证是不是一条小于k的线路。验证的时候只要加和看是否小于k即可。所以旅行商问题是NP问题。</p>
+<p>排序不是一个NP问题，排序是个动作不是一个决定/问题，问一个序列是否有序，这是个NP问题，可以在多项式时间内被验证。</p>
+<p>所有的p问题都是np问题（在多项式时间内可解、在多项式时间内可验证），但是np问题是否为p问题，尚未被验证。</p>
+<p>np问题有很多很多。np-complete是np问题中的一类，像TSP这种可以归约到一类的问题，目前大概有一万多种（？），都是np-complete。np-complete目前还没有被证明是不是多项式级的问题，但是可以用多项式规约为一类问题。</p>
+<p>np-hard是对难度的衡量。</p>
+<h3 id="几个np问题">几个NP问题</h3>
+<h4 id="tsp问题-旅行商问题-高复杂度问题">TSP问题 旅行商问题 高复杂度问题</h4>
+<ul>
+<li>假设有一个旅行商人要拜访n个城市，他必须选择所要走的路径，路径的限制是每个城市只能拜访一次，而且最后要回到原来出发的城市。路径的选择目标是要求得的路径路程为所有路径之中的最小值。</li>
+<li>目前最好的算法O($n2^n$)</li>
+</ul>
+<h4 id="clique问题clique完全图团每个点和其他边都相邻对于一个图找出里面的最大团等于几">clique问题，clique完全图(团，每个点和其他边都相邻)，对于一个图找出里面的最大团等于几</h4>
+<ul>
+<li>是否在图中存在团C，使得|C|&gt;K。其实就是找图中最大的完全图。</li>
+<li>O(n$2^n$)</li>
+</ul>
+<p>对于NP问题不知道它究竟是不是P问题（究竟是不是多项式时间内可解）现在还是不确定的。</p>
+<h4 id="sat问题satisfiability-problem布尔表达式的可满足性问题">SAT问题（satisfiability problem）布尔表达式的可满足性问题</h4>
+<p>与或非表达式。看输入一串$x_i&hellip;&hellip;x_n$用与或非把他们连接起来。是否存在一串$x_i&hellip;&hellip;x_n$的值使得表达式为TRUE，看是否存在表达式为True的情况，看$x_i$分别要取什么值。</p>
+<p>如果是或的关系，不用连线只要一个true就行了；相反的也不连线。最后找到一个团，就有使得整个表达式为True的值。</p>
+<p>代入验证很方便，可以在多项式时间内验证完毕。</p>
+<p>它是NP-complete问题。</p>
+<p>所有问题遍历完之后有O($2^n$)的复杂度。</p>
+<h3 id="近似算法">近似算法</h3>
+<p>近似算法，就是给定一个参数$alpha$，返回的解在$alpha$和$2alpha$之间。（？）</p>
+<h4 id="顶点覆盖问题">顶点覆盖问题</h4>
+<p>可以找到一个顶点集合，所有点覆盖在里面。</p>
+<p>如果没有边返回空集，如果是个完全图，返回N-1个结点（N-2个结点就不行了，在两个去掉的点之间连线）。</p>
+<p>怎么解决这个问题？有一个近似算法。每次随机取一个结点，把相关的边都去掉。这样一个集合，比最优的集合，点数不超过它两倍。假设超过最优的集合的两倍了，有一个点就连不上了。（一条边连接两个点）（要涵盖一条边，两个顶点至少一个要在里面。如果都没被选中就不能被覆盖了）</p>
+<p>小于等于最优解的两倍。</p>
+<h4 id="旅行商问题">旅行商问题</h4>
+<p>做一个最小生成树，把两点之间的边double一下形成一条回路，然后它小于等于两倍的欧拉回路。欧拉回路，七桥问题，走一圈经过所有边。P655 再优化一下，经过两次的直接用一条边连接（三角不等式）。</p>
+<p>目前最好的复杂度O($n^22^n$)。</p>
+<h4 id="集合覆盖问题">集合覆盖问题</h4>
+<p>用最少的人，达到最好的效果，涵盖最多的功能。贪心算法，每次找最全面的人（覆盖范围最大的），把能力范围缩小，再找最全面的人，以此类推。</p>
+<h4 id="归约关系">归约关系</h4>
+<p>已知pi问题想知道pi’问题有多难。对于输入x’经过一个函数f，放到算法pi中求解，看输出结果。若f复杂度知道，pi的复杂度又知道，那么总体的复杂度都知道了。其实就是转化。（叫多项式规约是因为f的复杂度是一个多项式）</p>
+<p>P638几个问题的归约的关系。</p>
+<ul>
+<li>SAT&lt;=Clique。SAT可以归约到Clique问题。PPT上有。$x_i$和$非x_i$两个矛盾，无连线。必选，转换成找环的问题。</li>
+</ul>
+<p>对于NP问题，我们一般设计近似算法把问题解决掉。</p>
+<img src="/images/算法导论/归约关系.png" alt="归约" width="100%" height="100%" align="bottom"/>
+<h2 id="实验总结">实验总结</h2>
+<p>1.merge sort算法和insertion sort和bubble sort</p>
+<p>2.Strassen算法</p>
+<p>3.堆实现优先级队列</p>
+<p>4.计数排序（count sort）</p>
+<p>5.随机选择算法（rand select）、选择算法（SELECT）</p>
+<p>6.红黑树构建</p>
+<p>7.最长公共子序列</p>
+<p>8.动态规划 优化的二叉搜索树</p>
+<p>9.Dynamic table</p>
+<p>10.贪心算法</p>
+<p>11.最小生成树</p>
+<p>12.dijkstra</p>
+<p>13.最大团</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-01-31</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://Isaray.github.io/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" data-title="Algorithm " data-hashtags="Algorithm"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://Isaray.github.io/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" data-hashtag="Algorithm"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://Isaray.github.io/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" data-title="Algorithm " data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://Isaray.github.io/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" data-title="Algorithm "><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://Isaray.github.io/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" data-title="Algorithm "><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://Isaray.github.io/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" data-title="Algorithm " data-description="算法导论复习"><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://Isaray.github.io/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" data-title="Algorithm " data-description="算法导论复习"><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://Isaray.github.io/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" data-title="Algorithm "><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/algorithm/">Algorithm</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/" class="next" rel="next" title="六种常见算法">六种常见算法<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Isaray</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
