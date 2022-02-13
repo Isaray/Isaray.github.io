@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/Isaray.github.io\/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0\/"
-        },"genre": "posts","keywords": "Python, Algorithm","wordcount":  605 ,
+        },"genre": "posts","keywords": "Python, Algorithm","wordcount":  674 ,
         "url": "https:\/\/Isaray.github.io\/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0\/","datePublished": "2022-01-17T16:36:34+08:00","dateModified": "2022-01-18T17:55:28+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -145,8 +145,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">六种常见算法</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Isaray</a></span>&nbsp;<span class="post-category">included in <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>Notes</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-17">2022-01-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;605 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-17">2022-01-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;674 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -509,7 +509,57 @@
 </div>
 </div><p>inverting into binary tree</p>
 <p>reverse a linked list</p>
-<p>suffix trees</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">reverseList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">):</span>
+		<span class="s2">&#34;&#34;&#34;
+</span><span class="s2">		:type head: ListNode
+</span><span class="s2">		:rtype: ListNode
+</span><span class="s2">		&#34;&#34;&#34;</span>
+		<span class="c1"># 申请两个节点，pre和 cur，pre指向None</span>
+		<span class="n">pre</span> <span class="o">=</span> <span class="kc">None</span>
+		<span class="n">cur</span> <span class="o">=</span> <span class="n">head</span>
+		<span class="c1"># 遍历链表，while循环里面的内容其实可以写成一行</span>
+		<span class="c1"># 这里只做演示，就不搞那么骚气的写法了</span>
+		<span class="k">while</span> <span class="n">cur</span><span class="p">:</span>
+			<span class="c1"># 记录当前节点的下一个节点</span>
+			<span class="n">tmp</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">next</span>
+			<span class="c1"># 然后将当前节点指向pre</span>
+			<span class="n">cur</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">pre</span>
+			<span class="c1"># pre和cur节点都前进一位</span>
+			<span class="n">pre</span> <span class="o">=</span> <span class="n">cur</span>
+			<span class="n">cur</span> <span class="o">=</span> <span class="n">tmp</span>
+		<span class="k">return</span> <span class="n">pre</span>
+
+
+</code></pre></td></tr></table>
+</div>
+</div><p>suffix trees</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
