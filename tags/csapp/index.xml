@@ -1,56 +1,9 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Isaray&#39;s blog</title>
-        <link>https://Isaray.github.io/</link>
-        <description>这是我的全新 Hugo 网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 27 Jan 2022 16:36:34 &#43;0800</lastBuildDate>
-            <atom:link href="https://Isaray.github.io/index.xml" rel="self" type="application/rss+xml" />
-        <item>
-    <title>Zotero的使用</title>
-    <link>https://Isaray.github.io/zotero/</link>
-    <pubDate>Thu, 27 Jan 2022 16:36:34 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://Isaray.github.io/zotero/</guid>
-    <description><![CDATA[Zotero的安装和使用]]></description>
-</item><item>
-    <title>How to build our own websites with Hugo on Windows?</title>
-    <link>https://Isaray.github.io/build_websites_with_hugo/</link>
-    <pubDate>Mon, 17 Jan 2022 16:36:34 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://Isaray.github.io/build_websites_with_hugo/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="/images/build_websites_with_hugo/featured-image.jpg" referrerpolicy="no-referrer">
-            </div>Install Hugo on Wins and build your own website!]]></description>
-</item><item>
-    <title>六种常见算法</title>
-    <link>https://Isaray.github.io/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/</link>
-    <pubDate>Mon, 17 Jan 2022 16:36:34 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://Isaray.github.io/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/</guid>
-    <description><![CDATA[递归、分治、贪心、回溯、动态规划和枚举]]></description>
-</item><item>
-    <title>Algorithm </title>
-    <link>https://Isaray.github.io/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/</link>
-    <pubDate>Sun, 31 Jan 2021 22:46:27 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://Isaray.github.io/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/</guid>
-    <description><![CDATA[算法导论【复习】 教材：算法导论第三版
-本博客内容均为自行整理，以供学过算法的同学快速回忆之用。
-本人第一篇博客，当然要献给算法啦！博客是在复习的时候整理的，有点类似于记忆碎片，比较简略，欢迎大家在评论区讨论、补充、纠正。 ](算法导论期末复习大纲)
-【算法复杂度】： 假设所需计算机资源的量只和问题规模、算法输入和算法本身的函数相关。
-时间复杂度： 用基本操作步数衡量，独立于机器。 在不同情况下算法复杂度也是不同的，常见的情况有最好情况下，平均情况下，最坏情况下的时间复杂度。
-首先，是时间复杂度的三个概念O(),$\theta$(),$\omega$()。
-【算法导论】P26，三张图有助于理解
-- $O$() 渐进上界  {f(n):存在正常量c,$n_0$，使得对所有n&gt;=$n_0$，有0&lt;=f(n)&lt;=cg(n)}
- - $\theta$() 渐进紧确界  {f(n):存在正常量$c_1$、$c_2$和$n_0$，使得对所有n&gt;=$n_0$，有0&lt;=$c_1$g(n)&lt;=f(n)&lt;=$c_2$g(n)}
- - $\Omega$() 渐进下界  {f(n):存在正常量c,$n_0$，使得对所有n&gt;=$n_0$，有0&lt;=cg(n)&lt;=f(n)}
-  另外：
-1.$\omicron$()代表非渐进紧确上界，$\omega$()代表非渐进紧确下界。o(g(n)) = {f(n): 对任意正常数c&gt;0，使得对所有n&gt;=$n_0$，有0&lt;=f(n)&lt;cg(n)}
-2.$O()$和$\Omega$()如果非常紧的话都会趋向于$\theta$()。（有一种紧确界的证明方式就是这样的）
-3.$O()$往往差了些也是对的，但是不准确，比如用O($n^{100}$)来描述快速排序的平均时间复杂度也是对的,但是不如O(nlogn)来得确切。所以比较紧的界才有意义，能求出$\theta$()最好啦。（另外，用$o(nlogn)$来描述快速排序的平均情况就不行，因为$\omicron$()代表非渐进紧确上界，看那个定义中是没有等号的，要注意大O和小o的区别）。
- 根据递归式求$O$()和 $\Omega$()的三种方法：  代入法P48：猜测复杂度式子，假设出来（可能需要带低阶的参数），代入递归式并证明。 递归树法P50：把递归树画出来，然后累加（可能会用到级数相关知识）。那种分成两颗不均匀子树的情况常用这种方法求解。 主方法P53：可以用递归树法推导，推导过程中会用到$n^{log_ba} = a^{log_bn}$的性质P56。  令a$\ge$1和b&gt;1是常数，f(n)是一个函数，T(n)是定义在非负整数上的递归式： T(n) = a * T(n/b) + f(n)，其中我们将n/b解释为$\lfloor n/b\rfloor$或者$\lceil n/b\rceil$。那么T(n)有如下渐进界。
-   对某个常数$\epsilon&gt;0$，有 f(n) = $O(n^{log_ba−\epsilon})$, 则 T(n) = $\theta(n^{log_ba})$。（叶子节点占主导）    f(n) = $\theta(n^{log_ba})$, 则 T(n) = $\theta(n^{log_ba}logn)$ 。（根节点叶子结点差不多）    对某个常数$\epsilon&gt;0$，有 f(n) = $\Omega(n^{log_ba−\epsilon})$, 且对某个常数c&lt;1和所有足够大的n有$af(n/b)\le cf(n)$，则 T(n) = $\theta(f(n))$。（根节点占主导）    strassen算法 书中有穿插着讲矩阵乘法的strassen算法，以它的复杂度为例。P44有伪代码。一般针对方阵，不是方阵可以补成方阵。]]></description>
-</item><item>
+        <title>CSAPP - Tag - Isaray&#39;s blog</title>
+        <link>https://Isaray.github.io/tags/csapp/</link>
+        <description>CSAPP - Tag - Isaray&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 31 Jan 2021 16:20:34 &#43;0800</lastBuildDate><atom:link href="https://Isaray.github.io/tags/csapp/" rel="self" type="application/rss+xml" /><item>
     <title>CSAPP:memory mountain</title>
     <link>https://Isaray.github.io/csapp-memory_mountain/</link>
     <pubDate>Sun, 31 Jan 2021 16:20:34 &#43;0800</pubDate>
