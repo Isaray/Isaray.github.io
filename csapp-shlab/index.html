@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title> - Isaray&#39;s blog</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="" />
+<meta property="og:description" content="1 2 3 4 5 6 7 8 9 10 11 12 13  title: &#34;CSAPP:shlab&#34; date: 2021-01-31T16:15:34&#43;08:00 lastmod: 2022-01-31T16:20:15&#43;08:00 draft: false author: &#34;Isaray&#34; description: &#34;How to solve the shlab? &#34; tags: [&#34;CSAPP&#34;,&#34;Courses&#34;] categories: [&#34;Experiments&#34;] lightgallery: true   CSAPP:shlab 该实验对应CSAPP第8章：异常控制流，可以先温习该章内容再做实验。
+通读实验指南，了解实验目的：
+简介 The purpose of this assignment is to become more familiar with the concepts of process control and signalling. You’ll do this by writing a simple Unix shell program that supports job control." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Isaray.github.io/csapp-shlab/" /><meta property="og:image" content="https://Isaray.github.io/logo.png"/><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://Isaray.github.io/logo.png"/>
+
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="1 2 3 4 5 6 7 8 9 10 11 12 13  title: &#34;CSAPP:shlab&#34; date: 2021-01-31T16:15:34&#43;08:00 lastmod: 2022-01-31T16:20:15&#43;08:00 draft: false author: &#34;Isaray&#34; description: &#34;How to solve the shlab? &#34; tags: [&#34;CSAPP&#34;,&#34;Courses&#34;] categories: [&#34;Experiments&#34;] lightgallery: true   CSAPP:shlab 该实验对应CSAPP第8章：异常控制流，可以先温习该章内容再做实验。
+通读实验指南，了解实验目的：
+简介 The purpose of this assignment is to become more familiar with the concepts of process control and signalling. You’ll do this by writing a simple Unix shell program that supports job control."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://Isaray.github.io/csapp-shlab/" /><link rel="next" href="https://Isaray.github.io/csapp-memory_mountain/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/Isaray.github.io\/csapp-shlab\/"
+        },"genre": "posts","wordcount":  1265 ,
+        "url": "https:\/\/Isaray.github.io\/csapp-shlab\/","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Isaray"
+            },"description": ""
+    }
+    </script><style>
+             
+.search {
+    position: relative;
+    padding-top: 3.5rem;
+    padding-bottom: 1rem;
+    width: 57.5%;
+    margin: 0 auto;
+    background: white;
+    opacity: .95;
+}
+[theme=dark] .search {
+    background: #3a3535;
+}
+
+[theme=dark] .search header,
+.search header {
+    background-color: #f8f8f8;
+}
+
+[theme=dark] .search header:hover,
+.search header:hover {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.search header h1 {
+    padding-left: 1rem;
+    background: white;
+}
+[theme=dark] .search header h1 {
+    background: #3a3535;
+}
+
+[theme=dark] .search input,
+.search input {
+	height: initial;
+    width: initial;
+    color: initial;
+	background-color: white;
+	margin: 0 0 0 1rem;
+	border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+	-webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.search #search-results {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+[theme=dark] a:active, [theme=dark] a:hover {
+    color: #2d96bd;
+}
+
+.search hr {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+        </style>
+    </head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Isaray&#39;s blog">Isaray&#39;s blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/categories/projects/"> Projects </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="/search/"><i class='fas fa-fw fa-search'></i> search </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Isaray&#39;s blog">Isaray&#39;s blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/categories/projects/" title="">Projects</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="/search/" title=""><i class='fas fa-fw fa-search'></i>search</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container">
+                    <div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Isaray</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1265 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#简介">简介</a></li>
+            <li><a href="#检验结果用到的一些命令">检验结果用到的一些命令</a></li>
+            <li><a href="#实验代码和注释">实验代码和注释</a>
+              <ul>
+                <li><a href="#eval">eval</a></li>
+                <li><a href="#builtin_cmd">builtin_cmd</a></li>
+                <li><a href="#do_bgfg">do_bgfg</a></li>
+                <li><a href="#waitfg">waitfg</a></li>
+                <li><a href="#sigchld_handler">sigchld_handler</a></li>
+                <li><a href="#sigint_handler">sigint_handler</a></li>
+                <li><a href="#sigtstp_handler">sigtstp_handler</a></li>
+              </ul>
+            </li>
+            <li><a href="#参考">参考</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">title: &#34;CSAPP:shlab&#34;
+date: 2021-01-31T16:15:34+08:00
+lastmod: 2022-01-31T16:20:15+08:00
+
+draft: false
+author: &#34;Isaray&#34;
+
+description: &#34;How to solve the shlab? &#34;
+
+tags: [&#34;CSAPP&#34;,&#34;Courses&#34;]
+categories: [&#34;Experiments&#34;]
+
+lightgallery: true
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="csappshlab">CSAPP:shlab</h1>
+<p>该实验对应CSAPP第8章：异常控制流，可以先温习该章内容再做实验。</p>
+<p>通读实验指南，了解实验目的：</p>
+<h4 id="简介">简介</h4>
+<p>The purpose of this assignment is to become more familiar with the concepts of <strong>process control</strong> and <strong>signalling</strong>. You’ll do this by writing a simple <strong>Unix shell</strong> program that supports job control.</p>
+<p>本实验的目的就是写一个简单的<strong>Unix shell</strong>，主要任务就是修改tsh.c文件，需修改以下7个函数。</p>
+<blockquote>
+<ul>
+<li>
+<p>1.void eval(char *cmdline); //解释命令[70 lines]</p>
+</li>
+<li>
+<p>2.int builtin_cmd(char **argv);//识别命令是否为内置命令quit、jobs、fg、bg ，若是，则执行对应命令.[25
+lines]</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>quit命令会终止shell。</li>
+<li>jobs 命令列出所有后台工作。
+bg 命令通过发送一个 SIGCONT 信号重新启动，然后在后台运行。参数可以是 PID 或 JID。</li>
+<li>fg 命令通过发送一个 SIGCONT 信号重新启动，然后在前台运行。</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p>3.void do_bgfg(char **argv);//执行bg,fg操作[50 lines]</p>
+</li>
+<li>
+<p>4.void waitfg(pid_t pid);//等待前台操作完成 [20 lines]</p>
+</li>
+<li>
+<p>5.void sigchld_handler(int sig);//抓住 SIGCHILD [信号80 lines]</p>
+</li>
+<li>
+<p>6.void sigtstp_handler(int sig);//抓住 SIGINT (ctrl-c) 信号[15 lines]</p>
+</li>
+<li>
+<p>7.void sigint_handler(int sig);//抓住 SIGTSTP (ctrl-z) 信号[15 lines]</p>
+</li>
+</ul>
+</blockquote>
+<p>关于你输入的命令： 
+如果第一个词是内置的命令，shell会在当前进程中立即执行该命令，否则，假定该词是可执行程序的路径名，在这种情况下，shell会fork一个子进程，然后在子进程的上下文中加载并运行程序。</p>
+<p>如果命令行以&quot;&amp;&ldquo;结尾，则作业在后台运行，这意味着shell在打印提示符和等待下一行命令前，不会等待job结束。否则，job在前台运行，这意味着shell在等待下一个命令行之前会等待job终止。因此，在任何时间点上，最多只能有一个job在前台运行。但是，可以有任意数量的job在后台运行。</p>
+<p>下面一段说明很好地解释了main中的参数argc、argv代表什么意思（这里环境的参数被省略了）：</p>
+<blockquote>
+<p>Typing the command line <code>tsh&gt; /bin/ls -l -d</code> runs the ls program in the foreground. By convention, the shell ensures that when the program begins executing its main routine</p>
+<p><code>int main(int argc, char *argv[])</code></p>
+<p>the argc and argv arguments have the following values:</p>
+<p>• argc == 3,</p>
+<p>• argv[0] == ‘‘/bin/ls’’,</p>
+<p>• argv[1]== ‘‘-l’’,</p>
+<p>• argv[2]== ‘‘-d’’.</p>
+<p>argc指的是参数个数，argv是指针数组，每个指针指向一个参数字符串。</p>
+</blockquote>
+<p>一些注意事项：</p>
+<ul>
+<li>如果命令行以＆结束，则tsh应该在后台运行job。 否则，它将在前台运行该job。</li>
+<li>每个作业都可以由进程ID（PID）或作业ID（JID）标识，该ID是tsh分配的正整数。 JID应该在命令行上以前缀“％”表示。 例如，“％5”表示JID 5，“ 5”表示PID5。</li>
+<li>tsh应该管理回收（reap）所有的僵尸子进程。 如果任何job由于接收到未捕获到的信号而终止，则tsh应该识别此事件并打印一条带有该job的PID的消息以及对该问题的信号的描述。</li>
+<li>job Id 和 process id 是有区别的，前者需要以<code>%</code>为前缀，后者为一个数字。这一点在处理bg、fg指令时尤为重要</li>
+<li>在<code>eval</code>中一定要</li>
+<li>
+<ul>
+<li>在fork子进程前用<code>sigprocmask</code>阻塞<code>SIGCHLD</code>信号；fork之后解除该阻塞</li>
+<li>在加子进程到joblist前调用<code>sigprocmask</code>阻塞全部信号</li>
+<li>因为子进程会从父进程处继承阻塞信息，所以在<code>execve</code>其他二进制文件前，一定要解除信号阻塞</li>
+<li>子进程按照建议应该在 <code>sigchld_handler</code>被收割（reap），所以父进程需要在调用<code>addjob</code>之前阻塞<code>SIGCHLD</code>信号，以防止竞态条件</li>
+</ul>
+</li>
+<li>当在标准unix shell中运行tsh程序时，从tsh程序fork出来的子程序会和tsh处于同一个process group；因此你需要使用setpgid来重置子进程process group id；如若不然，在ctrl-c &amp; ctrl-z的处理上会有一些问题</li>
+<li>用sigprocmask阻塞信号，因为有时候不希望在接到信号时就立即停止当前执行，去处理信号，同时也不希望忽略该信号，而是延时一段时间去调用信号处理函数。</li>
+</ul>
+<h4 id="检验结果用到的一些命令">检验结果用到的一些命令</h4>
+<p>先<code>make</code></p>
+<p>共16组测试数据，test结果要和rtest完全一样才算通过。</p>
+<p><code>make test01</code>  相当于 <code>./sdriver.pl -t trace01.txt -s ./tsh -a &quot;-p&quot;</code></p>
+<p><code>make rtest01</code>   相当于 <code>./sdriver.pl -t trace01.txt -s ./tshref -a &quot;-p&quot;</code></p>
+<h4 id="实验代码和注释">实验代码和注释</h4>
+<h5 id="eval">eval</h5>
+<p>eval解析输入的命令： 
+如果第一个词是内置的命令builtin_cmd(argv)，shell会在当前进程中立即执行该命令。
+否则，假定该词是可执行程序的路径名，在这种情况下，shell会fork一个子进程，然后在子进程的上下文中加载并运行程序。</p>
+<blockquote>
+<p>注意：在创建子进程前要阻塞信号 ，为了避免父进程运行到addjob之前子进程就退出了，导致信号丢失，所以在fork子进程前阻塞sigchld信号，并在fork,addjob后解除</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">  
+/* 
+ * eval - Evaluate the command line that the user has just typed in
+ * 
+ * If the user has requested a built-in command (quit, jobs, bg or fg)
+ * then execute it immediately. Otherwise, fork a child process and
+ * run the job in the context of the child. If the job is running in
+ * the foreground, wait for it to terminate and then return.  Note:
+ * each child process must have a unique process group ID so that our
+ * background children don&#39;t receive SIGINT (SIGTSTP) from the kernel
+ * when we type ctrl-c (ctrl-z) at the keyboard.  
+*/
+void eval(char *cmdline) 
+{	
+	// static char array[MAXLINE]; /* holds local copy of command line */
+    // char *buf = array;          /* ptr that traverses command line */
+	char *argv[MAXARGS];	//命令行参数
+	pid_t pid;	//子进程PID
+	int bg; // 最后是否是&amp;，即是否后台执行，
+	sigset_t mask_one, prev, mask_all;
+	
+	// strcpy(buf, cmdline);	//缓存命令行
+	bg = parseline(cmdline, argv);
+		
+	if(argv[0] == NULL)
+		return;//忽略空行
+	
+	if(!builtin_cmd(argv)){//如果不是shell的内嵌命令
+		sigemptyset(&amp;mask_one);//初始化信号量集 
+		sigaddset(&amp;mask_one, SIGCHLD);//将SIGCHLD添加到信号量集中 
+		sigfillset(&amp;mask_all);// 设置全阻塞
+		sigprocmask(SIG_BLOCK, &amp;mask_one, &amp;prev);//阻塞信号 ，为了避免父进程运行到addjob之前子进程就退出了，所以在fork子进程前阻塞sigchld信号，addjob后解除
+		if((pid = fork()) == 0){	
+			 // 子进程继承了父进程的阻塞向量，也要解除阻塞，避免收不到它本身的子进程的信号 
+			setpgid(0, 0);	//把pid=0放到gpid=0的进程组
+			sigprocmask(SIG_SETMASK, &amp;prev, NULL);//恢复被屏蔽的信号，防止遗漏
+			//容错
+			if(execve(argv[0], argv, environ) &lt; 0){
+				printf(&#34;%s: Command not found\n&#34;, argv[0]);
+				exit(0);
+			}
+		}
+	
+		sigprocmask(SIG_BLOCK, &amp;mask_all, NULL);
+		addjob(jobs, pid, bg?BG:FG, cmdline);
+		sigprocmask(SIG_SETMASK, &amp;prev, NULL);		
+		if(bg){
+			//在后台解除屏蔽			
+			printf(&#34;[%d] (%d) %s&#34;, pid2jid(pid), pid, cmdline);
+		}else{	
+			waitfg(pid);
+		}
+	}
+    return;
+}
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="builtin_cmd">builtin_cmd</h5>
+<p>判断是否内置命令（1是，0否），并执行对应操作。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">/* 
+ * builtin_cmd - If the user has typed a built-in command then execute
+ *    it immediately.  
+ */
+int builtin_cmd(char **argv) 
+{
+	if(!strcmp(argv[0], &#34;quit&#34;)){
+		exit(0);
+	}
+	if(!strcmp(argv[0], &#34;jobs&#34;)){
+		listjobs(jobs);
+		return 1;
+	}
+	if(!strcmp(argv[0], &#34;&amp;&#34;)){
+		// ignore singleton &#39;&amp;&#39;
+		return 1;
+	}
+	if(!strcmp(argv[0], &#34;bg&#34;) || !strcmp(argv[0], &#34;fg&#34;)){
+		do_bgfg(argv);
+		return 1;
+	}
+
+    return 0;     /* not a builtin command */
+}
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="do_bgfg">do_bgfg</h5>
+<p>在命令行中的第一个参数argv[0]可以用于判断输入的是bg还是fg命令。
+PID和JID有不同的格式，分别用不同的方式读入sscanf(argv[1],&quot;%d&rdquo;,&amp;pid)和sscanf(argv[1],&quot;%%%d&quot;,&amp;jid)，若都不是，则会输出错误提示。</p>
+<blockquote>
+<ul>
+<li>每个作业都可以由进程ID（PID）或作业ID（JID）标识，该ID是tsh分配的正整数。 JID应该在命令行上以前缀“％”表示。 例如，“％5”表示JID 5，“ 5”表示PID5。</li>
+</ul>
+</blockquote>
+<p>看process或者job是否存在，不存在则报错，若存在则修改状态，并重启。
+若是fg前台则等待前一个进程结束，若是bg后台则输出相应字符串。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">/* 
+ * do_bgfg - Execute the builtin bg and fg commands
+ */
+void do_bgfg(char **argv) 
+{	int jid;
+	struct job_t *job;
+	pid_t pid;
+	sigset_t mask, prev;
+	
+//argv[0]判断bg还是fg
+	if(argv[1] == NULL){
+		printf(&#34;%s command requires PID or %%jobid argument\n&#34;,argv[0]);
+		return;
+	}
+	
+	//首先确定是pid还是jid，然后将其转化为kill的参数
+	//读jid
+	if(sscanf(argv[1],&#34;%%%d&#34;,&amp;jid) &gt; 0){	
+		job = getjobjid(jobs, jid);	//需要获得job，因为要修改job信息
+		if(job == NULL || job-&gt;state == UNDEF){
+			printf(&#34;%s: No such job\n&#34;, argv[1]);
+			return;
+		}
+	//读pid
+	}else if(sscanf(argv[1],&#34;%d&#34;,&amp;pid) &gt; 0){	
+		job = getjobpid(jobs, pid);
+		if(job == NULL || job-&gt;state == UNDEF){
+			printf(&#34;(%s): No such process\n&#34;, argv[1]);
+			return;
+		}
+	}else{
+		printf(&#34;%s: argument must be a PID or %%jobid\n&#34;, argv[0]);
+		return;
+	}
+	//修改job信息
+	sigfillset(&amp;mask);
+	sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev);
+	//更改状态
+	if(!strcmp(argv[0], &#34;fg&#34;)){	
+		job-&gt;state = FG;
+	}else{
+		job-&gt;state = BG;
+	}
+	sigprocmask(SIG_SETMASK, &amp;prev, NULL);
+	
+	pid = job-&gt;pid;
+	//发送SIGCONT重启
+	kill(-pid, SIGCONT);
+	if(!strcmp(argv[0], &#34;fg&#34;)){
+		waitfg(pid);//若是前台则等待前一个进程结束
+	}else{
+		printf(&#34;[%d] (%d) %s&#34;, job-&gt;jid, pid, job-&gt;cmdline);//若是后台则输出相应字符串
+	}
+    return;
+}
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="waitfg">waitfg</h5>
+<p>等待pid进程不再是前台进程</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">/* 
+ * waitfg - Block until process pid is no longer the foreground process
+ */
+void waitfg(pid_t pid)
+{
+	while(pid == fgpid(jobs)){
+		sleep(1);
+	}
+    return;
+}
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="sigchld_handler">sigchld_handler</h5>
+<p>//抓住 SIGCHILD 信号
+内核在每当子进程终止（成为僵尸）或停止时，因为它收到SIGSTOP或SIGTSTP信号，该处理zombie进程，但不等待任何其他的。终止当前正在运行的子进程。
+回收的子进程有三种状态：正常退出、信号退出和信号停止。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">	if(WIFEXITED(state)){	// 正常退出
+			deletejob(jobs, pid);
+		}else if(WIFSIGNALED(state)){	// 信号退出
+			printf(&#34;Job [%d] (%d) terminated by signal %d\n&#34;, pid2jid(pid), pid, WTERMSIG(state));		
+			deletejob(jobs, pid);
+		}else if(WIFSTOPPED(state)){	// 信号停止
+			job = getjobpid(jobs, pid);
+			job-&gt;state = ST;//注意
+			printf(&#34;Job [%d] (%d) stopped by signal %d\n&#34;, job-&gt;jid, pid, WSTOPSIG(state));
+		}
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">/*****************
+ * Signal handlers
+ *****************/
+
+/* 
+ * sigchld_handler - The kernel sends a SIGCHLD to the shell whenever
+ *     a child job terminates (becomes a zombie), or stops because it
+ *     received a SIGSTOP or SIGTSTP signal. The handler reaps all
+ *     available zombie children, but doesn&#39;t wait for any other
+ *     currently running children to terminate.  
+ */
+void sigchld_handler(int sig) 
+{
+	int old_errno = errno;	
+	pid_t pid;
+	sigset_t mask, prev;
+	int state;	
+	struct job_t *job;
+	
+	sigfillset(&amp;mask);// 设置全阻塞
+	
+	while((pid = waitpid(-1, &amp;state, WNOHANG | WUNTRACED)) &gt; 0){	
+		// WNOHANG | WUNTRACED 是立即返回
+        // 用WIFEXITED(status)，WIFSIGNALED(status)，WIFSTOPPED(status)等来补获终止或者被停止的子进程的退出状态。	
+		sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev);
+		if(WIFEXITED(state)){	// 正常退出
+			deletejob(jobs, pid);
+		}else if(WIFSIGNALED(state)){	// 信号退出
+			printf(&#34;Job [%d] (%d) terminated by signal %d\n&#34;, pid2jid(pid), pid, WTERMSIG(state));		
+			deletejob(jobs, pid);
+		}else if(WIFSTOPPED(state)){	// 停止
+			job = getjobpid(jobs, pid);
+			job-&gt;state = ST;//注意
+			printf(&#34;Job [%d] (%d) stopped by signal %d\n&#34;, job-&gt;jid, pid, WSTOPSIG(state));
+		}
+		sigprocmask(SIG_SETMASK, &amp;prev, NULL);
+	}
+	errno = old_errno; 
+    return;
+}
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="sigint_handler">sigint_handler</h5>
+<p>捕捉 SIGINT (ctrl-c) 信号</p>
+<h5 id="sigtstp_handler">sigtstp_handler</h5>
+<p>捕捉 SIGTSTP (ctrl-z) 信号</p>
+<blockquote>
+<p>两个函数写法看起来相似，但是在用sigchld_handler处理的时候有区别，对于 sigtstp_handler我们需要修改job的状态job-&gt;state = ST。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">
+/* 
+ * sigint_handler - The kernel sends a SIGINT to the shell whenver the
+ *    user types ctrl-c at the keyboard.  Catch it and send it along
+ *    to the foreground job.  
+ */
+void sigint_handler(int sig) 
+{	int olderrno=errno;
+        pid_t pid = fgpid(jobs);
+        if(pid!=0){
+                kill(-pid,sig);
+        }
+        errno = olderrno;
+
+    return;
+}
+
+/*
+ * sigtstp_handler - The kernel sends a SIGTSTP to the shell whenever
+ *     the user types ctrl-z at the keyboard. Catch it and suspend the
+ *     foreground job by sending it a SIGTSTP.  
+ */
+void sigtstp_handler(int sig) 
+{   int olderrno = errno;
+    pid_t pid = fgpid(jobs);
+    if(pid!=0){
+        kill(-pid,sig);
+    }
+	errno = olderrno; 
+    return;
+}
+
+/*********************
+ * End signal handlers
+ *********************/
+
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="参考">参考</h4>
+<p><strong>README：</strong><a href="https://link.zhihu.com/?target=http%3A//csapp.cs.cmu.edu/3e/README-shlab" target="_blank" rel="noopener noreffer">http://csapp.cs.cmu.edu/3e/README-shlab</a></p>
+<p><strong>说明：</strong><a href="https://link.zhihu.com/?target=http%3A//csapp.cs.cmu.edu/3e/shlab.pdf" target="_blank" rel="noopener noreffer">http://csapp.cs.cmu.edu/3e/shlab.pdf</a></p>
+<p><strong>代码：</strong><a href="https://link.zhihu.com/?target=http%3A//csapp.cs.cmu.edu/3e/shlab-handout.tar" target="_blank" rel="noopener noreffer">http://csapp.cs.cmu.edu/3e/shlab-handout.tar</a></p>
+<p><strong>复习：</strong><a href="https://link.zhihu.com/?target=http%3A//www.cs.cmu.edu/afs/cs/academic/class/15213-f15/www/recitations/rec09.pdf" target="_blank" rel="noopener noreffer">http://www.cs.cmu.edu/afs/cs/academic/class/15213-f15/www/recitations/rec09.pdf</a></p>
+<p><strong>博客</strong>：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/151050267" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/151050267</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/119034923" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/119034923</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/89224358" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/89224358</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 0001-01-01</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://Isaray.github.io/csapp-shlab/" data-title=""><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://Isaray.github.io/csapp-shlab/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://Isaray.github.io/csapp-shlab/" data-title="" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://Isaray.github.io/csapp-shlab/" data-title=""><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://Isaray.github.io/csapp-shlab/" data-title=""><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://Isaray.github.io/csapp-shlab/" data-title="" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://Isaray.github.io/csapp-shlab/" data-title="" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://Isaray.github.io/csapp-shlab/" data-title=""><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/csapp-memory_mountain/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Isaray</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

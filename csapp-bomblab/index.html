@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title> - Isaray&#39;s blog</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="" />
+<meta property="og:description" content="1 2 3 4 5 6 7 8 9 10 11 12 13  title: &#34;CSAPP:bomblab&#34; date: 2021-01-31T16:05:34&#43;08:00 lastmod: 2022-01-31T16:10:15&#43;08:00 draft: false author: &#34;Isaray&#34; description: &#34;How to solve the bomblab? bomb!!&#34; tags: [&#34;CSAPP&#34;,&#34;Courses&#34;] categories: [&#34;Experiments&#34;] lightgallery: true   CSAPP:bomblab Bomblab拆弹实录 准备工作 调试环境：  云主机Linux环境&#43;GDB
+ ssh客户端：  xshell&#43;xftp/putty&#43;psftp
+ xshell&#43;xftp:上传和下载文件有可视化操作界面，直接拖拽就可以上传。但是在gdb调试的时候，输入了的数据不能修改，按回车会输入^H，有的时候会手误就要重新开始。 putty&#43;psftp：上传文件用scp命令（例如：scp hello.c xx@xxx.75.241.219/home/xx/lab0；scp -r 拷贝目录），下载文件可以用psftp。假设要下载到本地目录E:,在psftp中运行lcd E:\定位本地目录，putty切换到云主机目录之后，get 文件名即可下载。   Linux相关命令 ：   cd document切换到文件夹; cd ..返回上一级目录;ls显示文件夹中的文件;pwd当前目录位置 解压:tar -xf all." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Isaray.github.io/csapp-bomblab/" /><meta property="og:image" content="https://Isaray.github.io/logo.png"/><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://Isaray.github.io/logo.png"/>
+
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="1 2 3 4 5 6 7 8 9 10 11 12 13  title: &#34;CSAPP:bomblab&#34; date: 2021-01-31T16:05:34&#43;08:00 lastmod: 2022-01-31T16:10:15&#43;08:00 draft: false author: &#34;Isaray&#34; description: &#34;How to solve the bomblab? bomb!!&#34; tags: [&#34;CSAPP&#34;,&#34;Courses&#34;] categories: [&#34;Experiments&#34;] lightgallery: true   CSAPP:bomblab Bomblab拆弹实录 准备工作 调试环境：  云主机Linux环境&#43;GDB
+ ssh客户端：  xshell&#43;xftp/putty&#43;psftp
+ xshell&#43;xftp:上传和下载文件有可视化操作界面，直接拖拽就可以上传。但是在gdb调试的时候，输入了的数据不能修改，按回车会输入^H，有的时候会手误就要重新开始。 putty&#43;psftp：上传文件用scp命令（例如：scp hello.c xx@xxx.75.241.219/home/xx/lab0；scp -r 拷贝目录），下载文件可以用psftp。假设要下载到本地目录E:,在psftp中运行lcd E:\定位本地目录，putty切换到云主机目录之后，get 文件名即可下载。   Linux相关命令 ：   cd document切换到文件夹; cd ..返回上一级目录;ls显示文件夹中的文件;pwd当前目录位置 解压:tar -xf all."/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://Isaray.github.io/csapp-bomblab/" /><link rel="prev" href="https://Isaray.github.io/csapp-datalab/" /><link rel="next" href="https://Isaray.github.io/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/Isaray.github.io\/csapp-bomblab\/"
+        },"genre": "posts","wordcount":  173 ,
+        "url": "https:\/\/Isaray.github.io\/csapp-bomblab\/","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Isaray"
+            },"description": ""
+    }
+    </script><style>
+             
+.search {
+    position: relative;
+    padding-top: 3.5rem;
+    padding-bottom: 1rem;
+    width: 57.5%;
+    margin: 0 auto;
+    background: white;
+    opacity: .95;
+}
+[theme=dark] .search {
+    background: #3a3535;
+}
+
+[theme=dark] .search header,
+.search header {
+    background-color: #f8f8f8;
+}
+
+[theme=dark] .search header:hover,
+.search header:hover {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.search header h1 {
+    padding-left: 1rem;
+    background: white;
+}
+[theme=dark] .search header h1 {
+    background: #3a3535;
+}
+
+[theme=dark] .search input,
+.search input {
+	height: initial;
+    width: initial;
+    color: initial;
+	background-color: white;
+	margin: 0 0 0 1rem;
+	border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+	-webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.search #search-results {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+[theme=dark] a:active, [theme=dark] a:hover {
+    color: #2d96bd;
+}
+
+.search hr {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+        </style>
+    </head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Isaray&#39;s blog">Isaray&#39;s blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/categories/projects/"> Projects </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="/search/"><i class='fas fa-fw fa-search'></i> search </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Isaray&#39;s blog">Isaray&#39;s blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/categories/projects/" title="">Projects</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="/search/" title=""><i class='fas fa-fw fa-search'></i>search</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container">
+                    <div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Isaray</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;173 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#bomblab拆弹实录">Bomblab拆弹实录</a>
+      <ul>
+        <li><a href="#准备工作">准备工作</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#调试环境">调试环境：</a></li>
+                <li><a href="#ssh客户端">ssh客户端：</a></li>
+                <li><a href="#linux相关命令--">Linux相关命令  ：</a></li>
+                <li><a href="#gdb调试">GDB调试：</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#题目求解">题目求解</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#phase_1地址字符串">phase_1:地址字符串</a></li>
+                <li><a href="#phase_2循环">phase_2:循环</a></li>
+                <li><a href="#phase_3switch-7-每个数对应一个值">phase_3:switch &lt;7 每个数对应一个值</a></li>
+                <li><a href="#phase_4">phase_4:</a></li>
+                <li><a href="#phase_5">phase_5:</a></li>
+                <li><a href="#phase_6">phase_6:</a></li>
+                <li><a href="#secret_phase">secret_phase:</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">title: &#34;CSAPP:bomblab&#34;
+date: 2021-01-31T16:05:34+08:00
+lastmod: 2022-01-31T16:10:15+08:00
+
+draft: false
+author: &#34;Isaray&#34;
+
+description: &#34;How to solve the bomblab? bomb!!&#34;
+
+tags: [&#34;CSAPP&#34;,&#34;Courses&#34;]
+categories: [&#34;Experiments&#34;]
+
+lightgallery: true
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="csappbomblab">CSAPP:bomblab</h1>
+<h2 id="bomblab拆弹实录">Bomblab拆弹实录</h2>
+<h3 id="准备工作">准备工作</h3>
+<h5 id="调试环境">调试环境：</h5>
+<blockquote>
+<p>云主机Linux环境+GDB</p>
+</blockquote>
+<h5 id="ssh客户端">ssh客户端：</h5>
+<blockquote>
+<p>xshell+xftp/putty+psftp</p>
+<ul>
+<li>xshell+xftp:上传和下载文件有可视化操作界面，直接拖拽就可以上传。但是在gdb调试的时候，输入了的数据不能修改，按回车会输入^H，有的时候会手误就要重新开始。</li>
+<li>putty+psftp：上传文件用scp命令（例如：scp hello.c <a href="mailto:xx@xxx.75.241.219" rel="">xx@xxx.75.241.219</a>/home/xx/lab0；scp -r 拷贝目录），下载文件可以用psftp。假设要下载到本地目录E:,在psftp中运行lcd E:\定位本地目录，putty切换到云主机目录之后，get 文件名即可下载。</li>
+</ul>
+</blockquote>
+<h5 id="linux相关命令--">Linux相关命令  ：</h5>
+<blockquote>
+<ul>
+<li>cd document切换到文件夹; cd ..返回上一级目录;ls显示文件夹中的文件;pwd当前目录位置</li>
+<li>解压:tar -xf all.tar，tar -zxvf filename.tar.gz</li>
+<li>cat filename 显示文件内容</li>
+<li>vim filename查看/编辑文件内容，i进入编辑模式，esc退出编辑模式，:wq保存并退出，:q没修改直接退出。</li>
+<li>复制文件：cp document/file newdocument/newfile</li>
+<li>重命名：mv oldname newname</li>
+</ul>
+</blockquote>
+<h5 id="gdb调试">GDB调试：</h5>
+<blockquote>
+<ul>
+<li>进入GDB调试状态，gdb filename;或先运行gdb再运行file filename</li>
+<li>info b看断点情况；b(reak) 行号/函数名 打断点；d (elete) 行号/函数名 删除断点</li>
+<li>i r看寄存器的值。info reg esp看%esp里存储了什么。print $eax。print (char*) $ebx。</li>
+<li>x/s 0xffff5330 打印该地址存储的字符串；x/16x 地址 答应之后16个字节的数字。</li>
+<li>s单步执行（不会进入被调用的函数内部），si单步执行（会进入被调用的函数内部）。c接着运行到下一个断点。</li>
+<li>display /ni $pc。用si调试每行都会显示下一行的汇编语言。</li>
+</ul>
+</blockquote>
+<h3 id="题目求解">题目求解</h3>
+<h5 id="phase_1地址字符串">phase_1:地址字符串</h5>
+<blockquote>
+<p>比较字符串是否相等，查看地址中预设的字符串即可。</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/20210131233339690.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==,size_16,color_FFFFFF,t_70#pic_center"
+        data-srcset="https://img-blog.csdnimg.cn/20210131233339690.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center, https://img-blog.csdnimg.cn/20210131233339690.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center 1.5x, https://img-blog.csdnimg.cn/20210131233339690.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/20210131233339690.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==,size_16,color_FFFFFF,t_70#pic_center"
+        title="在这里插入图片描述" /></p>
+<h5 id="phase_2循环">phase_2:循环</h5>
+<blockquote>
+<p>读入六个数字做判断，读懂汇编语言，知道后一个数等于前两个数的加和即可。</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/202101312334381.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==,size_16,color_FFFFFF,t_70#pic_center"
+        data-srcset="https://img-blog.csdnimg.cn/202101312334381.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center, https://img-blog.csdnimg.cn/202101312334381.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center 1.5x, https://img-blog.csdnimg.cn/202101312334381.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/202101312334381.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==,size_16,color_FFFFFF,t_70#pic_center"
+        title="在这里插入图片描述" /></p>
+<h5 id="phase_3switch-7-每个数对应一个值">phase_3:switch &lt;7 每个数对应一个值</h5>
+<blockquote>
+<p>是一个switch函数，输入1-7会跳转到不同的地址，和事先存入的数字进行比较。有多个答案。</p>
+</blockquote>
+<h5 id="phase_4">phase_4:</h5>
+<blockquote>
+<p>递归调用了func4()。首先输入的数字小于等于4。输入4，之后经过递归调用该函数得到216，最后和输入的第一个数字进行比较，所以第一个数字为216，第二个数字为4。应该有不同的答案。</p>
+<p>// int func4(edi ,esi,ebx){//edi last,ebx last
+%ebx=0x10(%esp) //8 //变成上次的eax，即7
+%edi=0x14(%esp) //第二个参数
+if ebx== 0 then return 0;
+eax=edi
+if ebx==1 then return eax
+eax=ebx-1.
+从头递归。
+esi=edi+eax
+ebx=ebx-2
+从头递归。
+eax=eax+esi
+return eax
+}</p>
+</blockquote>
+<h5 id="phase_5">phase_5:</h5>
+<blockquote>
+<p>%ebx存放字符串。
+x/100x 0x804a040 看这个地址之后存放了什么。理解地址代表的含义是关键。每个输入的字符取十六进制ASCII码的后一位*4+该地址，找到对应的数字，累加到%ecx。最后%ecx要等于41。反推出要输入的字母。</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/2021013123354771.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==,size_16,color_FFFFFF,t_70#pic_center"
+        data-srcset="https://img-blog.csdnimg.cn/2021013123354771.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center, https://img-blog.csdnimg.cn/2021013123354771.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center 1.5x, https://img-blog.csdnimg.cn/2021013123354771.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/2021013123354771.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==,size_16,color_FFFFFF,t_70#pic_center"
+        title="在这里插入图片描述" />
+0:02;1:a;2:6;3:1;4:c;5:0x10;6:9;7:3;8:4;9:7;10:e;11:5;12:b;13:8;14:f;15:d
+Prstux 2+6+1+12+16+4=41
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/20210131233617430.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==,size_16,color_FFFFFF,t_70#pic_center"
+        data-srcset="https://img-blog.csdnimg.cn/20210131233617430.jpg?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center, https://img-blog.csdnimg.cn/20210131233617430.jpg?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center 1.5x, https://img-blog.csdnimg.cn/20210131233617430.jpg?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/20210131233617430.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==,size_16,color_FFFFFF,t_70#pic_center"
+        title="在这里插入图片描述" /></p>
+<h5 id="phase_6">phase_6:</h5>
+<blockquote>
+<p>读入6个数字，六个数字都&lt;=6，六个数字互不相等。程序里事先存储了6个节点，六个节点有各自的编号，最后要从小到大输出，否则就爆炸。输入的6个数字代表，节点从小到大排列的顺序。</p>
+<p>phase_6太长了，理解了好久，做到最后还挺崩溃的，只能说大胆假设，小心求证。理解地址代表的含义同样是关键，看到node要发挥想象力。</p>
+</blockquote>
+<p>5 3 2 1 4 6
+0x1d5 
+0x325 
+0x391 
+0x1c6 
+0x3a5 
+0xef</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/20210131233701698.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==,size_16,color_FFFFFF,t_70#pic_center"
+        data-srcset="https://img-blog.csdnimg.cn/20210131233701698.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center, https://img-blog.csdnimg.cn/20210131233701698.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center 1.5x, https://img-blog.csdnimg.cn/20210131233701698.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/20210131233701698.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lzYXJheQ==,size_16,color_FFFFFF,t_70#pic_center"
+        title="在这里插入图片描述" /></p>
+<h5 id="secret_phase">secret_phase:</h5>
+<blockquote>
+<p>secret phase要触发，首先要在phase_4处多输入一个字符串DrEvil。</p>
+<p>首先输入的数字要小于等于1000，然后secret调用func7()，经过func7()之后必须为0。传入一个地址0x804c088，查看它就可以解开题目中预先存储的数据。整个条件判断类似二叉树的结构，要和根节点的值一致且要执行到末端，否则返回-1。又是递归。</p>
+</blockquote>
+<p>这只是简要版解题思路，图片后续再补~</p>
+<p>解开一个要缓一缓，然后发现跟后一个phase比起来，前一个简直是小case。发现做到最后最重要的其实是心态。</p>
+<p>最后，有高级语言真好。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 0001-01-01</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://Isaray.github.io/csapp-bomblab/" data-title=""><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://Isaray.github.io/csapp-bomblab/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://Isaray.github.io/csapp-bomblab/" data-title="" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://Isaray.github.io/csapp-bomblab/" data-title=""><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://Isaray.github.io/csapp-bomblab/" data-title=""><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://Isaray.github.io/csapp-bomblab/" data-title="" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://Isaray.github.io/csapp-bomblab/" data-title="" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://Isaray.github.io/csapp-bomblab/" data-title=""><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/csapp-datalab/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw"></i></a>
+            <a href="/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" class="next" rel="next" title="Algorithm ">Algorithm <i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Isaray</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
