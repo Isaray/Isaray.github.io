@@ -2,13 +2,17 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://Isaray.github.io/categories/</loc><lastmod>2022-01-31T16:25:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://Isaray.github.io/</loc><lastmod>2022-01-31T16:25:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://Isaray.github.io/categories/notes/</loc><lastmod>2022-01-28T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
-            <loc>https://Isaray.github.io/posts/</loc><lastmod>2022-01-31T16:25:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://Isaray.github.io/tags/</loc><lastmod>2022-01-31T16:25:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://Isaray.github.io/tags/tools/</loc><lastmod>2022-01-28T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
-            <loc>https://Isaray.github.io/zotero/</loc><lastmod>2022-01-28T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://Isaray.github.io/categories/books/</loc><lastmod>2022-03-09T18:58:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://Isaray.github.io/categories/</loc><lastmod>2022-03-09T18:58:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://Isaray.github.io/tags/history/</loc><lastmod>2022-03-09T18:58:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://Isaray.github.io/</loc><lastmod>2022-03-09T18:58:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://Isaray.github.io/tags/it/</loc><lastmod>2022-03-09T18:58:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://Isaray.github.io/categories/notes/</loc><lastmod>2022-03-09T18:58:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://Isaray.github.io/posts/</loc><lastmod>2022-03-09T18:58:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://Isaray.github.io/tags/</loc><lastmod>2022-03-09T18:58:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://Isaray.github.io/%E6%B5%AA%E6%BD%AE%E4%B9%8B%E5%B7%85%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</loc><lastmod>2022-03-09T18:58:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://Isaray.github.io/tags/tools/</loc><lastmod>2022-01-28T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://Isaray.github.io/zotero/</loc><lastmod>2022-01-28T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://Isaray.github.io/tags/algorithm/</loc><lastmod>2022-01-18T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://Isaray.github.io/build_websites_with_hugo/</loc><lastmod>2022-01-18T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://Isaray.github.io/tags/hugo/</loc><lastmod>2022-01-18T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -18,14 +22,14 @@
             <loc>https://Isaray.github.io/%E5%85%AD%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/</loc><lastmod>2022-01-18T17:55:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://Isaray.github.io/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/</loc><lastmod>2021-01-31T23:50:37&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://Isaray.github.io/categories/courses/</loc><lastmod>2021-01-31T23:50:37&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://Isaray.github.io/tags/courses/</loc><lastmod>2022-01-31T16:25:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://Isaray.github.io/tags/csapp/</loc><lastmod>2022-01-31T16:25:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://Isaray.github.io/csapp-memory_mountain/</loc><lastmod>2022-01-31T16:25:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://Isaray.github.io/categories/experiments/</loc><lastmod>2022-01-31T16:25:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://Isaray.github.io/csapp-shlab/</loc><lastmod>2022-01-31T16:20:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://Isaray.github.io/csapp-malloclab/</loc><lastmod>2022-01-31T16:15:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://Isaray.github.io/csapp-bomblab/</loc><lastmod>2022-01-31T16:10:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://Isaray.github.io/csapp-datalab/</loc><lastmod>2022-01-31T16:05:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://Isaray.github.io/tags/courses/</loc><lastmod>2022-01-31T16:25:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://Isaray.github.io/tags/csapp/</loc><lastmod>2022-01-31T16:25:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://Isaray.github.io/csapp-memory_mountain/</loc><lastmod>2022-01-31T16:25:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://Isaray.github.io/categories/experiments/</loc><lastmod>2022-01-31T16:25:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://Isaray.github.io/csapp-shlab/</loc><lastmod>2022-01-31T16:20:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://Isaray.github.io/csapp-malloclab/</loc><lastmod>2022-01-31T16:15:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://Isaray.github.io/csapp-bomblab/</loc><lastmod>2022-01-31T16:10:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://Isaray.github.io/csapp-datalab/</loc><lastmod>2022-01-31T16:05:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://Isaray.github.io/about/</loc><lastmod>2019-08-02T11:04:49&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://Isaray.github.io/categories/projects/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://Isaray.github.io/search/</loc><changefreq>weekly</changefreq><priority>0.1</priority></url></urlset>
