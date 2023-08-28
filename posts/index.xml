@@ -3,14 +3,7 @@
         <title>All Posts - Isaray&#39;s blog</title>
         <link>https://Isaray.github.io/posts/</link>
         <description>All Posts | Isaray&#39;s blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 09 Mar 2022 16:55:20 &#43;0800</lastBuildDate><atom:link href="https://Isaray.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>浪潮之巅阅读笔记</title>
-    <link>https://Isaray.github.io/%E6%B5%AA%E6%BD%AE%E4%B9%8B%E5%B7%85%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
-    <pubDate>Wed, 09 Mar 2022 16:55:20 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://Isaray.github.io/%E6%B5%AA%E6%BD%AE%E4%B9%8B%E5%B7%85%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</guid>
-    <description><![CDATA[观潮]]></description>
-</item><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 27 Jan 2022 16:36:34 &#43;0800</lastBuildDate><atom:link href="https://Isaray.github.io/posts/" rel="self" type="application/rss+xml" /><item>
     <title>Zotero的使用</title>
     <link>https://Isaray.github.io/zotero/</link>
     <pubDate>Thu, 27 Jan 2022 16:36:34 &#43;0800</pubDate>
@@ -26,6 +19,21 @@
     <description><![CDATA[<div class="featured-image">
                 <img src="/images/build_websites_with_hugo/featured-image.jpg" referrerpolicy="no-referrer">
             </div>Install Hugo on Wins and build your own website!]]></description>
+</item><item>
+    <title>Raft</title>
+    <link>https://Isaray.github.io/raft/</link>
+    <pubDate>Mon, 17 Jan 2022 16:36:34 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Isaray.github.io/raft/</guid>
+    <description><![CDATA[MIT 6.824 lab2 Raft算法中服务器有三种角色
+ Follower Candidate Leader  每个服务器上都会存储的持久状态:
+ currentTerm: 当前节点所能看到的最大的term值, 初始化为0并单调递增 votedFor: 当前term里将票投给对象的candidateId, 如果尚未投票则为空(我实现时置为-1) log[]: 日志条目(每条日志条目包含命令和任期), 会按顺序作用于状态机, 第一个索引Index为1  每个服务器上都会存储的易失状态:
+ commitIndex: 当前服务器最高的被提交的日志的索引, 初始化为0并单调递增 lastApplied: 当前服务器最高的被应用于状态机的日志的索引, 初始化为0并单调递增  在状态为Leader的服务器上会额外存储的易失状态:
+ nextIndex[]: 针对每个其他节点, 下一个需要发送的日志条目的索引, 初始化为leader最后一个日志索引+1 matchIndex[]: 针对每个其他节点, 当前所知的和Leader匹配的最高日志索引, 初始化为0并单调递增  Raft中RPC的种类 一. RequestVote
+ candidate节点请求其他节点投票给自己
+ 请求参数:
+ term: 当前candidate节点的term值 candidateId: 当前candidate节点的编号 lastLogIndex: 当前candidate节点最后一个日志的索引 lastLogTerm: 当前candidate节点最后一个日志的term值  返回值:
+ term: 接受投票节点的term值, 主要用来更新当前candidate节点的term值 voteGranted: 是否给该申请节点投票  一个节点（无论当前是什么状态）在接收到RequestVote(term, candidateId, lastLogIndex, lastLogTerm)消息时, 其会做如下判断(条件从上往下依次判断):]]></description>
 </item><item>
     <title>Algorithm </title>
     <link>https://Isaray.github.io/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/</link>

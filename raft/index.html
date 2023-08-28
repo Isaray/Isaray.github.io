@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Raft - Isaray&#39;s blog</title><meta name="Description" content="Raft , a simple distributed consensus algorithm"><meta property="og:title" content="Raft" />
+<meta property="og:description" content="Raft , a simple distributed consensus algorithm" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Isaray.github.io/raft/" /><meta property="og:image" content="https://Isaray.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-17T16:36:34+08:00" />
+<meta property="article:modified_time" content="2022-01-18T17:55:28+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://Isaray.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Raft"/>
+<meta name="twitter:description" content="Raft , a simple distributed consensus algorithm"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://Isaray.github.io/raft/" /><link rel="prev" href="https://Isaray.github.io/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" /><link rel="next" href="https://Isaray.github.io/build_websites_with_hugo/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Raft",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/Isaray.github.io\/raft\/"
+        },"genre": "posts","keywords": "DB","wordcount":  430 ,
+        "url": "https:\/\/Isaray.github.io\/raft\/","datePublished": "2022-01-17T16:36:34+08:00","dateModified": "2022-01-18T17:55:28+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Isaray"
+            },"description": "Raft , a simple distributed consensus algorithm"
+    }
+    </script><style>
+             
+.search {
+    position: relative;
+    padding-top: 3.5rem;
+    padding-bottom: 1rem;
+    width: 57.5%;
+    margin: 0 auto;
+    background: white;
+    opacity: .95;
+}
+[theme=dark] .search {
+    background: #3a3535;
+}
+
+[theme=dark] .search header,
+.search header {
+    background-color: #f8f8f8;
+}
+
+[theme=dark] .search header:hover,
+.search header:hover {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.search header h1 {
+    padding-left: 1rem;
+    background: white;
+}
+[theme=dark] .search header h1 {
+    background: #3a3535;
+}
+
+[theme=dark] .search input,
+.search input {
+	height: initial;
+    width: initial;
+    color: initial;
+	background-color: white;
+	margin: 0 0 0 1rem;
+	border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+	-webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.search #search-results {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+[theme=dark] a:active, [theme=dark] a:hover {
+    color: #2d96bd;
+}
+
+.search hr {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+        </style>
+    </head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Isaray&#39;s blog">Isaray&#39;s blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/categories/projects/"> Projects </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="/search/"><i class='fas fa-fw fa-search'></i> search </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Isaray&#39;s blog">Isaray&#39;s blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/categories/projects/" title="">Projects</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="/search/" title=""><i class='fas fa-fw fa-search'></i>search</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container">
+                    <div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Raft</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Isaray</a></span>&nbsp;<span class="post-category">included in <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>Notes</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-17">2022-01-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;430 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#mit-6824">MIT 6.824</a>
+      <ul>
+        <li><a href="#lab2">lab2</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="mit-6824">MIT 6.824</h2>
+<h3 id="lab2">lab2</h3>
+<p>Raft算法中服务器有三种角色</p>
+<ol>
+<li>Follower</li>
+<li>Candidate</li>
+<li>Leader</li>
+</ol>
+<p>每个服务器上都会存储的<strong>持久</strong>状态:</p>
+<ol>
+<li>currentTerm: 当前节点所能看到的最大的term值, 初始化为0并单调递增</li>
+<li>votedFor: 当前term里将票投给对象的candidateId, 如果尚未投票则为空(我实现时置为-1)</li>
+<li>log[]: 日志条目(每条日志条目包含命令和任期), 会按顺序作用于状态机, 第一个索引Index为1</li>
+</ol>
+<p>每个服务器上都会存储的<strong>易失</strong>状态:</p>
+<ol>
+<li>commitIndex: 当前服务器最高的被提交的日志的索引, 初始化为0并单调递增</li>
+<li>lastApplied: 当前服务器最高的被应用于状态机的日志的索引, 初始化为0并单调递增</li>
+</ol>
+<p>在状态为Leader的服务器上会额外存储的<strong>易失</strong>状态:</p>
+<ol>
+<li>nextIndex[]: 针对每个其他节点, 下一个需要发送的日志条目的索引, 初始化为leader最后一个日志索引+1</li>
+<li>matchIndex[]: 针对每个其他节点, 当前所知的和Leader匹配的最高日志索引, 初始化为0并单调递增</li>
+</ol>
+<p>Raft中RPC的种类 一. RequestVote</p>
+<blockquote>
+<p>candidate节点请求其他节点投票给自己</p>
+</blockquote>
+<p>请求参数:</p>
+<ol>
+<li>term: 当前candidate节点的term值</li>
+<li>candidateId: 当前candidate节点的编号</li>
+<li>lastLogIndex: 当前candidate节点最后一个日志的索引</li>
+<li>lastLogTerm: 当前candidate节点最后一个日志的term值</li>
+</ol>
+<p>返回值:</p>
+<ol>
+<li>term: 接受投票节点的term值, 主要用来更新当前candidate节点的term值</li>
+<li>voteGranted: 是否给该申请节点投票</li>
+</ol>
+<p>一个节点（无论当前是什么状态）在接收到RequestVote(term, candidateId, lastLogIndex, lastLogTerm)消息时, 其会做如下判断(条件从上往下依次判断):</p>
+<ol>
+<li>如果参数携带的term &lt; currentTerm, 则返回currentTerm并拒绝投票请求: (currentTerm, false), 并保持当前节点状态不变</li>
+<li>如果参数携带的term = currentTerm, 如果投票节点的votedFor不为空并且不等于参数携带的candidateId则返回当前term并拒绝投票请求: (currentTerm, false), 并保持当前节点状态不变; 如果voteFor为空或者等于candidateId则同意投票请求: (currentTerm, true), 并转换当前节点为Follower, 重置定时器, voteFor置为candidateId</li>
+<li>如果参数携带的term &gt; currentTerm, 则首先设置投票节点currentTerm = term, voteFor置为空并转换为Follower状态, 重置定时器, 进入下一步判断:
+<ol>
+<li>如果投票节点最后一条日志的term &gt; 参数携带的lastLogTerm, 则返回<strong>更新后的term</strong>并拒绝投票请求: (currentTerm, false)</li>
+<li>如果投票节点最后一条日志的term = 参数携带的lastLogTerm, 则比较该节点最后一条日志的Index和参数携带的lastLogIndex大小; 如果该节点最后一条日志的Index &gt; lastLogIndex, 则返回<strong>更新后的term</strong>并拒绝投票请求: (currentTerm, false), 否则令voteFor = candidateId并同意投票请求: (currentTerm, true)</li>
+<li>如果投票节点最后一条日志的term &lt; 参数携带的lastLogTerm, 令voteFor = candidateId并同意投票请求: (currentTerm, true)</li>
+</ol>
+</li>
+</ol>
+<p>区分2和3的原因是paper中提到同一term期间每个节点最多给一个candidate投票, 在情况2中可能存在某个节点已经给别的candidate投过票的情况, 而情况3中所有投票节点会先更新为Follower状态, voteFor也会置为空, 所以不用再判断上述投过票的情况</p>
+<p>疑问点: 在情况2中voteFor为空或者等于candidateId时(感觉这种情况很少), 要不要将lastLogIndex和lastLogTerm纳入判断 updated: 疑问解决, 非常有必要! 见raft.go中相关comments</p>
+<p>二. AppendEntries</p>
+<blockquote>
+<p>leader节点使用该消息向其他节点同步日志, 或者发送空消息作为心跳包以维持leader的统治地位</p>
+</blockquote>
+<p>请求参数:</p>
+<ol>
+<li>term: 当前leader节点的term值</li>
+<li>leaderId: 当前leader节点的编号</li>
+<li>prevLogIndex: 当前发送的日志的前面一个日志的索引</li>
+<li>prevLogTerm: 当前发送的日志的前面一个日志的term值</li>
+<li>entries[]: 需要各个节点存储的日志条目(用作心跳包时为空, 可能会出于效率发送超过一个日志条目)</li>
+<li>leaderCommit: 当前leader节点最高的被提交的日志的索引(就是leader节点的commitIndex)</li>
+</ol>
+<p>返回值:</p>
+<ol>
+<li>term: 接收日志节点的term值, 主要用来更新当前leader节点的term值</li>
+<li>success: 如果接收日志节点的log[]结构中prevLogIndex索引处含有日志并且该日志的term等于prevLogTerm则返回true, 否则返回false</li>
+</ol>
+<p>一个节点（无论当前是什么状态）接收到AppendEntries(term, leaderId, prevLogIndex, prevLogTerm, entries[], leaderCommit)消息时, 其会做如下判断(条件从上往下依次判断):</p>
+<ol>
+<li>如果参数携带的term &lt; currentTerm, 则返回当前term并返回: (currentTerm, false), 并保持当前节点状态不变</li>
+<li>如果参数携带的term &gt;= currentTerm, 则设置currentTerm = term, voteFor = leaderId, 转换当前节点为Follower状态, 重置随机定时器, 进入下一步判断:
+<ol>
+<li>如果当前节点log[]结构中prevLogIndex索引处不含有日志, 则返回(currentTerm, false)</li>
+<li>如果当前节点log[]结构中prevLogIndex索引处含有日志但该日志的term不等于prevLogTerm, 则返回(currentTerm, false)</li>
+<li>如果当前节点log[]结构中prevLogIndex索引处含有日志并且该日志的term等于prevLogTerm, 则<strong>执行存储日志, 然后应用日志到状态机</strong>并返回(currentTerm, true)
+<ul>
+<li>存储日志:
+<ol>
+<li>如果新的日志条目和已经存在的日志条目产生冲突, 则将这个已经存在的日志条目以及它之后的日志条目全部删除, 然后将参数携带的entries[]中的条目加到当前节点log[]中</li>
+<li>如果新的日志条目和已经存在的日志条目不产生冲突, 不要删除prevLogIndex之后的日志, 因为可能是当前节点接收到了过期的同步日志请求</li>
+</ol>
+</li>
+<li>应用日志到状态机:
+<ol>
+<li>如果参数携带的leaderCommit &gt; 当前节点的commitIndex, 则设置commitIndex = min(leaderCommit, index of last new entry), 并且将当前节点(lastApplied, commitIndex]区间内的日志应用到状态机中</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<p>Raft算法的事件和状态转换</p>
+<p>一. Raft集群启动时各个节点:</p>
+<ol>
+<li>可以获取整个Raft集群的所有节点的连接信息</li>
+<li>进行一系列初始化(currentTerm置为0, votedFor置为-1, 初始状态为Follower)</li>
+</ol>
+<p>二. Followers状态</p>
+<ol>
+<li>回复来自leaders或者candidates的消息</li>
+<li>如果选举时间超过也没接收到<strong>当前leader</strong>发来的AppendEntries消息或者<strong>同意candidate当选</strong>的RequestVote消息, 则转换为Candidate状态</li>
+</ol>
+<p>三. Candidates状态</p>
+<ol>
+<li>currentTerm自增1</li>
+<li>给自己投一票（votedFor设置为当前节点）</li>
+<li>重置随机定时器</li>
+<li>向所有其他节点并行发送RequestVote消息</li>
+</ol>
+<p>Candidates会一直保持candidate状态直到下面三种情况之一发生(见paper):</p>
+<ol>
+<li>得到了超过半数节点的同意（voteGranted为true）则该节点当选leader, 转换自己的状态到Leader</li>
+<li>接收到另一节点发来的AppendEntries消息表明自己是leader, 如果当前candidate节点认为该leader是合法的(消息携带参数中的term &gt; currentTerm), 则将自己转换到Follower状态</li>
+<li>定时器超时前没收到大多数投票, 则开始一轮新的选举</li>
+</ol>
+<p>Candidate接收到RequestVote的返回结果(依据上一条的论述):</p>
+<ol>
+<li>如果返回消息中的term &gt; currentTerm则设置currentTerm = term, 重置随机定时器, 并将自己转换为Follower状态</li>
+<li>如果得到了超过半数节点的同意（voteGranted为true）则该节点当选leader, 转换自己的状态到Leader</li>
+<li>定时器超时前没收到大多数投票, 则开始一轮新的选举</li>
+</ol>
+<p>四. Leaders状态</p>
+<ol>
+<li>初始化nextIndex[](全部置为自己最后一条日志的Index + 1)和matchIndex[(全部置为0)</li>
+<li>定期发送AppendEntries消息(心跳包)给每个节点, 以此来维持自己的leader地位(发送周期小于随机定时器最小超时时间, 最好超时周期为发送周期的三倍左右)</li>
+<li>如果leader节点的最后一条日志索引 &gt;= 某个follower节点的nextIndex(存储在leader的nextIndex[]中), AppendEntries消息中发送的日志条目从leader节点的nextIndex算起</li>
+</ol>
+<p>Leader接收到AppendEntries的返回结果:</p>
+<ol>
+<li>如果返回消息中的term &gt; currentTerm则设置currentTerm = term, 重置随机定时器, 并将自己转换为Follower状态</li>
+<li>如果返回消息中的success为false(由于日志不一致造成)则将该节点在nextIndex[]对应的值减1并重新发送消息</li>
+<li>如果返回消息中的success为true, 则更新该节点在的nextIndex和matchIndex值</li>
+<li>如果存在一个N &gt; commitIndex, 并且大多数节点的matchIndex值都 &gt;= N, 同时log[N-1].term(这里和paper中不一样的原因和我的实现有关, 实现中N-1是日志在log[]内的位置, 其对应的Index索引为N) = currentTerm, 则更新commitIndex为N</li>
+<li>将Leader节点(lastApplied, commitIndex]区间内的日志应用到状态机中</li>
+</ol>
+<p>注: 最初实现的时候很容易忽略情况4(见paper中Figure 8的情形), 会实现成一旦接收到大多数Follower的成功反馈, 就更新对应的commitIndex并提交该条AppendEntries所同步的所有日志和此之前的所有日志. 由于Leader只允许提交当前term的日志, 不允许提交之前term的日志, 所以采用情况4的做法来达到正确提交日志到状态机的目的</p>
+<p>测试用例详解:</p>
+<ol>
+<li>TestInitialElection2A
+<ol>
+<li>创建包含3台server的Raft Group(网络为reliable)</li>
+<li>首先检查leader是否被正常选举出来, 并检查每个任期是否只有不超过一个leader</li>
+<li>最后检查在网络不出错的情况下sleep一段时间任期是否发生变化</li>
+</ol>
+</li>
+<li>TestReElection2A
+<ol>
+<li>创建包含3台server的Raft Group(网络为reliable)</li>
+<li>首先检查leader是否被正常选举出来, 并检查每个任期是否只有不超过一个leader(这里选举出来的leader后面统称为leader1)</li>
+<li>将2中的leader1断开连接, 检查是否有新的leader重新被选举出来(这里选举出来的leader后面统称为leader2)</li>
+<li>重新连接leader1, 并不影响leader2</li>
+<li>断开2台server的连接, 没有leader会被选举出来</li>
+<li>逐一恢复2台server的连接, 每次都有leader被选举出来</li>
+</ol>
+</li>
+<li>TestBasicAgree2B
+<ol>
+<li>创建包含5台server的Raft Group(网络为reliable)</li>
+<li>三轮迭代, 每轮start一个命令, 并检查命令是否已经正确复制到所有5台server上</li>
+</ol>
+</li>
+<li>TestFailAgree2B
+<ol>
+<li>创建包含3台server的Raft Group(网络为reliable)</li>
+<li>start一个命令, 检查命令是否已经正确复制到所有3台server上</li>
+<li>断开某台server的连接, start一系列命令, 检查命令是否已经正确复制到所有已连接的2台server上</li>
+<li>重新连接之前断开连接的server, start一系列命令, 检查命令是否已经正确复制到所有已连接的3台server上</li>
+</ol>
+</li>
+<li>TestFailNoAgree2B
+<ol>
+<li>创建包含5台server的Raft Group(网络为reliable)</li>
+<li>start一个命令, 检查命令是否已经正确复制到所有5台server上</li>
+<li>断开其中3台server的连接, start一个命令, 检查命令有没有被复制到其他server上(命令正常来说无法提交, 因为Raft Group当前只有2台已连接server)</li>
+<li>重新连接之前断开连接的3台server, start一个命令, 检查命令是否已经正确复制到所有已连接的5台server上</li>
+</ol>
+</li>
+<li>TestConcurrentStarts2B
+<ol>
+<li>创建包含3台server的Raft Group(网络为reliable)</li>
+<li>五轮迭代, 每轮先start一个命令, 然后并发start另外五个命令, 检查所有命令是否已经正确复制到所有server上, 一旦检查通过一次就退出迭代</li>
+</ol>
+</li>
+<li>TestRejoin2B
+<ol>
+<li>创建包含3台server的Raft Group(网络为reliable)</li>
+<li>start一个命令, 检查命令是否已经正确复制到所有3台server上</li>
+<li>将2中的leader1断开连接, 并在leader1中start三个命令(是无效的, 不会被提交)</li>
+<li>start一个命令, 检查命令是否已经正确复制到已连接的2台server上</li>
+<li>将5中的leader2断开连接, 并重新连接2中的leader1</li>
+<li>start一个命令, 检查命令是否已经正确复制到已连接的2台server上(这里会出现一种情况: 首次执行Start的server可能是是错误的leader, 因为leader1刚恢复连接肯能还是Leader状态, 但后续会由于term小变为Follower, 然后重新选举出新leader, 这种情况会在一段时间后重新找到正确的leader进行Start操作, 具体见config.go里one函数的实现)</li>
+<li>新连接5中的leader2并start一个命令, 检查命令是否已经正确复制到已连接的3台server上(这里首次执行start也可能会产生上述情况)</li>
+</ol>
+</li>
+<li>TestBackup2B
+和TestRejoin2B类似, 条件更加harsh</li>
+<li>TestCount2B
+主要测RPC的数量, 不能请求过多</li>
+<li>TestPersist12C
+主要测servers crash后重启能否恢复crash之前的状态, 不持久状态的话恢复后状态都为空, start命令会导致和committed log不一致(因为可能crash之前已经有日志被提交, restart后日志会从Index=1算起)</li>
+<li>TestPersist22C
+和TestPersist12C类似, 条件更加harsh</li>
+<li>TestPersist32C
+和TestPersist12C类似, 条件更加harsh</li>
+<li>TestFigure82C
+模拟paper中Figure8的场景, 其他和TestPersist12C类似</li>
+<li>TestUnreliableAgree2C
+<ol>
+<li>创建包含5台server的Raft Group(网络为unreliable, unreliable主要体现在RPC请求可能会被推迟或拒绝)</li>
+<li>50轮迭代, 每轮都要start几个命令, 检查所有命令是否已经正确复制到server上(这里每轮迭代中的expectedServers都设置为1, 并没要求所有5个server都包含命令, 但实际上我测下来好像最后都是5个server复制成功的样子)</li>
+</ol>
+</li>
+<li>TestFigure8Unreliable2C
+创建包含5台server的Raft Group(网络为unreliable), 其他测试基本和TestFigure82C一致</li>
+<li>TestReliableChurn2C &amp;&amp; TestUnreliableChurn2C
+共用一个函数, 一个网络为reliable一个为unreliable, 反正就是一堆更harsh的操作&hellip;</li>
+</ol>
+<p>ref:</p>
+<ol>
+<li><a href="https://thesquareplanet.com/blog/students-guide-to-raft/" target="_blank" rel="noopener noreffer">Students' Guide to Raft</a></li>
+<li><a href="https://thesquareplanet.com/blog/raft-qa/" target="_blank" rel="noopener noreffer">Raft Q&amp;A</a></li>
+<li><a href="https://blog.csdn.net/wang_wbq/article/details/80376310" target="_blank" rel="noopener noreffer">分布式一致性算法-Raft学习笔记</a></li>
+<li><a href="https://github.com/shinytang6/6.824-raft" target="_blank" rel="noopener noreffer">shinytang6/6.824-raft: mit 6.824 raft 协议的完整实现 (github.com)</a></li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-01-18</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://Isaray.github.io/raft/" data-title="Raft" data-hashtags="DB"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://Isaray.github.io/raft/" data-hashtag="DB"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://Isaray.github.io/raft/" data-title="Raft" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://Isaray.github.io/raft/" data-title="Raft"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://Isaray.github.io/raft/" data-title="Raft"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://Isaray.github.io/raft/" data-title="Raft" data-description="Raft , a simple distributed consensus algorithm"><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://Isaray.github.io/raft/" data-title="Raft" data-description="Raft , a simple distributed consensus algorithm"><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://Isaray.github.io/raft/" data-title="Raft"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/db/">DB</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" class="prev" rel="prev" title="Algorithm "><i class="fas fa-angle-left fa-fw"></i>Algorithm </a>
+            <a href="/build_websites_with_hugo/" class="next" rel="next" title="How to build our own websites with Hugo on Windows?">How to build our own websites with Hugo on Windows?<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Isaray</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
